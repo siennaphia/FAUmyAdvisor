@@ -54,53 +54,54 @@ var firebaseConfig = {
   
   function createCheckboxes() {
     const classesContainer = document.getElementById('classesContainer');
-    for (const classId in classes) {
+    for (const classType in classes) {
+      for(const classId in classes[classType]){
+        const classItem = document.createElement('div');
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.id = classId;
+        checkbox.value = classId;
+        checkbox.addEventListener('change', function(e) {
+          const classData = classes[classId];
+          if (e.target.checked) {
+            currentUser.classesTaken.push(classId);
+            const skills = classData.skillsTaught;
+            for (const skill in skills) {
+              if (currentUser.acquiredSkills[skill]) {
+                currentUser.acquiredSkills[skill] += skills[skill];
+              } else {
+                currentUser.acquiredSkills[skill] = skills[skill];
+              }
+            }
+          } else {
+            const index = currentUser.classesTaken.indexOf(classId);
+            if (index !== -1) {
+              currentUser.classesTaken.splice(index, 1);
+            }
+            const skills = classData.skillsTaught;
+            for (const skill in skills) {
+              currentUser.acquiredSkills[skill] -= skills[skill];
+              if (currentUser.acquiredSkills[skill] <= 0) {
+                delete currentUser.acquiredSkills[skill];
+              }
+            }
+          }
+        });
     
-      const classItem = document.createElement('div');
-      const checkbox = document.createElement('input');
-      checkbox.type = 'checkbox';
-      checkbox.id = classId;
-      checkbox.value = classId;
-      checkbox.addEventListener('change', function(e) {
-        const classData = classes[classId];
-        if (e.target.checked) {
-          currentUser.classesTaken.push(classId);
-          const skills = classData.skillsTaught;
-          for (const skill in skills) {
-            if (currentUser.acquiredSkills[skill]) {
-              currentUser.acquiredSkills[skill] += skills[skill];
-            } else {
-              currentUser.acquiredSkills[skill] = skills[skill];
-            }
-          }
-        } else {
-          const index = currentUser.classesTaken.indexOf(classId);
-          if (index !== -1) {
-            currentUser.classesTaken.splice(index, 1);
-          }
-          const skills = classData.skillsTaught;
-          for (const skill in skills) {
-            currentUser.acquiredSkills[skill] -= skills[skill];
-            if (currentUser.acquiredSkills[skill] <= 0) {
-              delete currentUser.acquiredSkills[skill];
-            }
-          }
+        // Check if the classId is in the currentUser's classesTaken array
+        // If it is, mark this checkbox as checked
+        if (currentUser.classesTaken.includes(classId)) {
+          checkbox.checked = true;
         }
-      });
-  
-      // Check if the classId is in the currentUser's classesTaken array
-      // If it is, mark this checkbox as checked
-      if (currentUser.classesTaken.includes(classId)) {
-        checkbox.checked = true;
+    
+        const label = document.createElement('label');
+        label.htmlFor = classId;
+        label.textContent = classes[classType][classId].name;
+    
+        classItem.appendChild(checkbox);
+        classItem.appendChild(label);
+        classesContainer.appendChild(classItem);
       }
-  
-      const label = document.createElement('label');
-      label.htmlFor = classId;
-      label.textContent = classes[classId].name;
-  
-      classItem.appendChild(checkbox);
-      classItem.appendChild(label);
-      classesContainer.appendChild(classItem);
     }
   }
   
