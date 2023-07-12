@@ -17,8 +17,6 @@
   <!-- Add Firebase Database -->
   <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-database.js"></script>
 
-  <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-database.js"></script>
   <script src="app.js"></script>
 
   <style media="screen">
@@ -31,12 +29,12 @@
     }
     
     #userInfoContainer {
-      max-width: 600px;
-      margin: 50px auto;
+      max-width: 1000;
+      margin: 100px auto;
     }
 
     #classesContainer {
-      max-width: 600px;
+      max-width: 900px;
       margin: 50px auto;
     }
     
@@ -74,26 +72,31 @@
 
 <body> 
 
-  <div id="classesContainer">
-      <h1>My Classes</h1>
-      <table id="classesTable">
-        <tr id="row1"></tr>
-        <tr id="row2"></tr>
-        <tr id="row3"></tr>
-        <tr id="row4"></tr>
-        <tr id="row5"></tr>
-      </table>
-      <button id="saveButton">Save</button>
-  </div>
-
   <div id="userInfoContainer">
     <h1>User Information</h1>
+
     <label for="firstNameInput">First Name:</label>
     <input type="text" id="firstNameInput">
     <label for="lastNameInput">Last Name:</label>
     <input type="text" id="lastNameInput">
     <label for="careerSelect">Intended Career:</label>
     <select id="careerSelect"></select>
+  </div>
+
+  </div>
+
+  <div id="classesContainer">
+    <h1>My Classes</h1>
+    <table id="classesTable">
+      <tr id="row1"></tr>
+      <tr id="row2"></tr>
+      <tr id="row3"></tr>
+      <tr id="row4"></tr>
+      <tr id="row5"></tr>
+    </table>
+  </div>
+
+  <div id="saveButtonContainer">
     <button id="saveButton">Save</button>
   </div>
 

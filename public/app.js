@@ -16,13 +16,14 @@ var firebaseConfig = {
   
   let careers = {};
   let classes = {};
-
+  
   // Fetch careers from Firebase
   database.ref('/careers').once('value', snapshot => {
     careers = snapshot.val();
     populateCareerSelect();
   });
   
+  // Populate the career select dropdown with career options
   function populateCareerSelect() {
     const careerSelect = document.getElementById('careerSelect');
   
@@ -32,6 +33,12 @@ var firebaseConfig = {
       option.textContent = career;
       careerSelect.appendChild(option);
     }
+  
+    // Fetch classes from Firebase
+    database.ref('/classes').once('value', snapshot => {
+      classes = snapshot.val();
+      createCheckboxes();
+    });
   }
   
   // Save currentUser to Firebase when 'Save' button is clicked
@@ -41,7 +48,7 @@ var firebaseConfig = {
     const careerSelect = document.getElementById('careerSelect');
     const intendedCareer = careerSelect.value;
   
-    // Update the user data in the Firebase
+    // Update the user data in Firebase
     database.ref('/users/user1').update({
       firstName: firstName,
       lastName: lastName,
@@ -61,7 +68,8 @@ var firebaseConfig = {
       document.getElementById('careerSelect').value = userData.intendedCareer;
     }
   });
-
+  
+  // Create checkboxes for the classes and display them in a table
   function createCheckboxes() {
     const classesContainer = document.getElementById('classesContainer');
     const classesTable = document.createElement('table');
@@ -81,8 +89,23 @@ var firebaseConfig = {
         checkbox.type = 'checkbox';
         checkbox.id = classId;
         checkbox.value = classId;
+  
         checkbox.addEventListener('change', function(e) {
-          // ... your checkbox change event code here ...
+          const classId = e.target.value;
+          const isChecked = e.target.checked;
+  
+          if (isChecked) {
+            // Add the class to currentUser.classesTaken if it's not already present
+            if (!currentUser.classesTaken.includes(classId)) {
+              currentUser.classesTaken.push(classId);
+            }
+          } else {
+            // Remove the class from currentUser.classesTaken
+            const index = currentUser.classesTaken.indexOf(classId);
+            if (index !== -1) {
+              currentUser.classesTaken.splice(index, 1);
+            }
+          }
         });
   
         const label = document.createElement('label');
@@ -116,12 +139,6 @@ var firebaseConfig = {
       rowCounter++;
     }
   
-    classesContainer.innerHTML = ''; // Clear the existing content
     classesContainer.appendChild(classesTable);
   }
   
-  // Fetch classes from Firebase
-  database.ref('/classes').once('value', snapshot => {
-    classes = snapshot.val();
-    createCheckboxes();
-  });
