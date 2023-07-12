@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Registration</title>
+
+  <!-- Update the version number as needed -->
+  <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-app.js"></script>
+
+  <!-- Add Firestore products -->
+  <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-firestore.js"></script>
+
+  <!-- Add Firebase Authentication -->
+  <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-auth.js"></script>
+
+  <!-- Add Firebase Database -->
+  <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-database.js"></script>
+
+  <script src="app.js"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body> 
+  <div class="navbar">
+    <a href="home.html">Home</a>
+    <a href="registration.html">Registration</a>
+    <a href="career.html">Career</a>
+    <a href="#skill.html">Skills</a>
+  </div>
+
+  <div id="classesContainer">
+    <h1>My Classes</h1>
+    <p id="classesTableCaption">Please enter all the classes you have taken or are currently taking.</p>
+    <table id="classesTable">
+      <tbody id="classesTableBody">
+      </tbody>
+    </table>
+  </div>
+
+  <div id="userInfoContainer">
+    <h1>User Information</h1>
+
+    <label for="firstNameInput">First Name:</label>
+    <input type="text" id="firstNameInput">
+
+    <label for="lastNameInput">Last Name:</label>
+    <input type="text" id="lastNameInput">
+
+    <label for="careerSelect">Intended Career:</label>
+    <select id="careerSelect"></select>
+  </div>
+
+  <div id="saveButtonContainer">
+    <button id="saveButton">Save/Update Information</button>
+  </div>
+</body>
+</html>

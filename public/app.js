@@ -81,6 +81,8 @@ var firebaseConfig = {
     currentRow.id = `row${rowCounter}`;
     classesTable.appendChild(currentRow);
   
+    const numColumns = 8; // Number of columns in the table
+  
     for (const classType in classes) {
       for (const classId in classes[classType]) {
         const classData = classes[classType][classId];
@@ -120,7 +122,7 @@ var firebaseConfig = {
         cellCounter++;
   
         // Move to the next row if we have reached the maximum number of columns
-        if (cellCounter > 5) {
+        if (cellCounter > numColumns) {
           rowCounter++;
           cellCounter = 1;
           currentRow = document.createElement('tr');
@@ -141,4 +143,5 @@ var firebaseConfig = {
   
     classesContainer.appendChild(classesTable);
   }
+  
   
