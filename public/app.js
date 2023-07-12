@@ -12,132 +12,116 @@ var firebaseConfig = {
   };
 
   firebase.initializeApp(firebaseConfig);
-var database = firebase.database();
+  var database = firebase.database();
+  
+  let careers = {};
+  let classes = {};
 
-let classes = {};
-let currentUser = {
-  firstName: "",
-  lastName: "",
-  classesTaken: [],
-  acquiredSkills: {}
-};
-
-// Fetch classes from Firebase
-database.ref('/classes').once('value', snapshot => {
-  classes = snapshot.val();
-  createCheckboxes();
-});
-
-// Fetch User 1 (for now) from Firebase
-database.ref('/users/user1').once('value', snapshot => {
-  currentUser = snapshot.val() || currentUser;
-  createCheckboxes();
-});
-
-// Save currentUser to Firebase when 'Save' button is clicked
-document.getElementById('saveButton').addEventListener('click', () => {
-  // Update the user data in the Firebase
-  database.ref('/users/user1').set(currentUser, error => {
-    if (error) {
-      console.log('Error while saving data:', error);
-    } else {
-      console.log('Data saved successfully!');
+  // Fetch careers from Firebase
+  database.ref('/careers').once('value', snapshot => {
+    careers = snapshot.val();
+    populateCareerSelect();
+  });
+  
+  function populateCareerSelect() {
+    const careerSelect = document.getElementById('careerSelect');
+  
+    for (const career in careers) {
+      const option = document.createElement('option');
+      option.value = career;
+      option.textContent = career;
+      careerSelect.appendChild(option);
+    }
+  }
+  
+  // Save currentUser to Firebase when 'Save' button is clicked
+  document.getElementById('saveButton').addEventListener('click', () => {
+    const firstName = document.getElementById('firstNameInput').value;
+    const lastName = document.getElementById('lastNameInput').value;
+    const careerSelect = document.getElementById('careerSelect');
+    const intendedCareer = careerSelect.value;
+  
+    // Update the user data in the Firebase
+    database.ref('/users/user1').update({
+      firstName: firstName,
+      lastName: lastName,
+      intendedCareer: intendedCareer
+    });
+  });
+  
+  // Fetch User 1 (for now) from Firebase
+  database.ref('/users/user1').once('value', snapshot => {
+    const userData = snapshot.val();
+  
+    // Check if userData exists and has valid values
+    if (userData && userData.firstName && userData.lastName && userData.intendedCareer) {
+      // Populate the input fields and select the correct option in the career select
+      document.getElementById('firstNameInput').value = userData.firstName;
+      document.getElementById('lastNameInput').value = userData.lastName;
+      document.getElementById('careerSelect').value = userData.intendedCareer;
     }
   });
-});
 
-// Update currentUser object with the selected classes
-function updateSelectedClasses() {
-  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-  currentUser.classesTaken = Array.from(checkboxes)
-    .filter(checkbox => checkbox.checked)
-    .map(checkbox => checkbox.value);
-}
-
-// Update currentUser object with the entered first and last name
-function updateUserName() {
-  currentUser.firstName = document.getElementById('firstNameInput').value;
-  currentUser.lastName = document.getElementById('lastNameInput').value;
-}
-
-// Create checkboxes for classes
-function createCheckboxes() {
-  if (!classes || Object.keys(classes).length === 0 || !currentUser) {
-    return;
-  }
-
-  const classesContainer = document.getElementById('classesContainer');
-  classesContainer.innerHTML = '';
-
-  const classesTable = document.createElement('table');
-  classesTable.classList.add('classes-table');
-
-  let rowCounter = 1;
-  let cellCounter = 1;
-  let currentRow = document.createElement('tr');
-  currentRow.id = `row${rowCounter}`;
-  classesTable.appendChild(currentRow);
-
-  for (const classType in classes) {
-    for (const classId in classes[classType]) {
-      const classData = classes[classType][classId];
-
-      const checkbox = document.createElement('input');
-      checkbox.type = 'checkbox';
-      checkbox.id = classId;
-      checkbox.value = classId;
-      checkbox.addEventListener('change', updateSelectedClasses);
-
-      if (currentUser.classesTaken.includes(classId)) {
-        checkbox.checked = true;
-      }
-
-      const label = document.createElement('label');
-      label.htmlFor = classId;
-      label.textContent = classData.name;
-
-      const cell = document.createElement('td');
-      cell.appendChild(checkbox);
-      cell.appendChild(label);
-
-      currentRow.appendChild(cell);
-      cellCounter++;
-
-      // Move to the next row if we have reached the maximum number of columns
-      if (cellCounter > 5) {
-        rowCounter++;
-        cellCounter = 1;
-        currentRow = document.createElement('tr');
-        currentRow.id = `row${rowCounter}`;
-        classesTable.appendChild(currentRow);
+  function createCheckboxes() {
+    const classesContainer = document.getElementById('classesContainer');
+    const classesTable = document.createElement('table');
+    classesTable.classList.add('classes-table');
+  
+    let rowCounter = 1;
+    let cellCounter = 1;
+    let currentRow = document.createElement('tr');
+    currentRow.id = `row${rowCounter}`;
+    classesTable.appendChild(currentRow);
+  
+    for (const classType in classes) {
+      for (const classId in classes[classType]) {
+        const classData = classes[classType][classId];
+  
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.id = classId;
+        checkbox.value = classId;
+        checkbox.addEventListener('change', function(e) {
+          // ... your checkbox change event code here ...
+        });
+  
+        const label = document.createElement('label');
+        label.htmlFor = classId;
+        label.textContent = classData.name;
+  
+        const cell = document.createElement('td');
+        cell.appendChild(checkbox);
+        cell.appendChild(label);
+  
+        currentRow.appendChild(cell);
+        cellCounter++;
+  
+        // Move to the next row if we have reached the maximum number of columns
+        if (cellCounter > 5) {
+          rowCounter++;
+          cellCounter = 1;
+          currentRow = document.createElement('tr');
+          currentRow.id = `row${rowCounter}`;
+          classesTable.appendChild(currentRow);
+        }
       }
     }
-  }
-
-  // Remove empty rows
-  while (rowCounter <= 5) {
-    const emptyRow = document.getElementById(`row${rowCounter}`);
-    if (emptyRow) {
-      emptyRow.parentNode.removeChild(emptyRow);
+  
+    // Remove empty rows
+    while (rowCounter <= 5) {
+      const emptyRow = document.getElementById(`row${rowCounter}`);
+      if (emptyRow) {
+        emptyRow.parentNode.removeChild(emptyRow);
+      }
+      rowCounter++;
     }
-    rowCounter++;
+  
+    classesContainer.innerHTML = ''; // Clear the existing content
+    classesContainer.appendChild(classesTable);
   }
-
-  classesContainer.appendChild(classesTable);
-}
-
-// Initialize the user name inputs
-function initializeUserNameInputs() {
-  const firstNameInput = document.getElementById('firstNameInput');
-  const lastNameInput = document.getElementById('lastNameInput');
-
-  firstNameInput.value = currentUser.firstName || '';
-  lastNameInput.value = currentUser.lastName || '';
-
-  firstNameInput.addEventListener('input', updateUserName);
-  lastNameInput.addEventListener('input', updateUserName);
-}
-
-// Call the initialization functions
-createCheckboxes();
-initializeUserNameInputs();
+  
+  // Fetch classes from Firebase
+  database.ref('/classes').once('value', snapshot => {
+    classes = snapshot.val();
+    createCheckboxes();
+  });
