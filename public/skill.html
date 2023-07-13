@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - youtube.com/codingnepal -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Dynamic Calendar JavaScript | CodingNepal</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+      table {
+        position: fixed;
+        top: 60px;
+        left: 0px;
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script>
+      
+      window.onload = function(){
+      var skillArray = new Array();
+      
+      skillArray.push({name: 'C++', amt: 5})
+      skillArray.push({name: 'HTML', amt: 2})
+      skillArray.push({name: 'GitHub', amt: 1})
+      skillArray.push({name: 'Python', amt: 9})
+      skillArray.push({name: 'SQL', amt: 4}) //wasn't sure how to pull this data from firebase. Sienna if you could explain a little how to do this that would be much appreciated.
+      
+      
+      var table = document.getElementById("skills");
+      for(var i = 0; i < skillArray.length; i++){
+        var row = document.createElement('tr');
+        var cell1 = document.createElement('td');
+        var cell2 = document.createElement('td');
+        cell1.textContent = skillArray[i].name;
+        if(skillArray[i].amt < 3){
+          cell2.textContent = "Low";
+        } else if(skillArray[i].amt <= 5){
+          cell2.textContent = "Medium";
+        } else if(skillArray[i].amt >= 6){
+          cell2.textContent = "High";
+        }
+        
+        row.appendChild(cell1);
+        row.appendChild(cell2);
+        table.appendChild(row); 
+        console.log(skillArray[i].amt);
+      }
+      };
+    </script>
+  </head>
+  <body>
+    <div class="navbar">
+      <a href="home.html">Home</a>
+      <a href="registration.html">Registration</a>
+      <a href="career.html">Career</a>
+      <a href="skill.html">Skills</a>
+      <a href="update.html">Update Info</a>
+    </div>
+    <table id="skills">
+  <tr>
+    <th>Skill</th>
+    <th>Proficiency Level</th>
+  </tr>
+  
+    
+  </body>
+</html>
