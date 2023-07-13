@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login</title>
+
+  <!-- Update the version number as needed -->
+  <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-app.js"></script>
+
+  <!-- Add Firestore products -->
+  <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-firestore.js"></script>
+
+  <!-- Add Firebase Authentication -->
+  <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-auth.js"></script>
+
+  <!-- Add Firebase Database -->
+  <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-database.js"></script>
+
+  <script src="app.js"></script>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      padding-top: 80px; /* Add padding to account for the height of the navbar */
+    }
+
+    h1 {
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    p {
+      text-align: center;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    label {
+      margin-bottom: 10px;
+    }
+
+    input[type="text"] {
+      width: 30%;
+      padding: 5px;
+      margin-bottom: 10px;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    .button-container button {
+      margin: 0 5px;
+      padding: 10px 20px;
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+
+<body>
+  <div class="navbar">
+    <a href="index.html">Login</a>
+    <a href="userinfo.html">Update Info</a>
+    <a href="home.html">Home</a>
+    <a href="registration.html">Registration</a>
+    <a href="career.html">Career</a>
+    <a href="#skill.html">Skills</a>
+  </div>
+  <h1>Welcome to MyAdvisor</h1>
+  <p>Please log in using your Z number.</p>
+  <form id="loginForm">
+    <label for="zNumberInput">Z Number:</label>
+    <input type="text" id="zNumberInput" required>
+    <div class="button-container">
+      <button type="submit">Log In</button>
+      <button type="button" onclick="registerUser()">Register</button>
+    </div>
+  </form>
+
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+  <script src="app.js"></script>
+  <script>
+    function registerUser() {
+      var zNumber = document.getElementById("zNumberInput").value;
+      if (zNumber) {
+        var usersRef = database.ref('/users');
+        usersRef.once('value', function(snapshot) {
+          var users = snapshot.val();
+          if (!users || !users[zNumber]) {
+            usersRef.child(zNumber).set({
+              auth: "", // Set the appropriate authentication method
+              classesTaken: [],
+              skills: {},
+              intendedCareer: "",
+              firstName: "",
+              lastName: "",
+              zNumber: zNumber
+            });
+            alert("Registration successful!");
+            window.location.href = "userinfo.html"; // Redirect to userinfo.html
+          } else {
+            alert("User with Z Number " + zNumber + " already exists.");
+          }
+        });
+      } else {
+        alert("Please enter a valid Z Number.");
+      }
+    }
+
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      var zNumber = document.getElementById("zNumberInput").value;
+      var usersRef = database.ref('/users');
+      usersRef.once('value', function(snapshot) {
+        var users = snapshot.val();
+        if (users && users[zNumber]) {
+          alert("Login successful!");
+          window.location.href = "userinfo.html"; // Redirect to userinfo.html
+        } else {
+          alert("User with Z Number " + zNumber + " does not exist.");
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
