@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Registration</title>
+
+  <!-- Update the version number as needed -->
+  <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-app.js"></script>
+
+  <!-- Add Firestore products -->
+  <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-firestore.js"></script>
+
+  <!-- Add Firebase Authentication -->
+  <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-auth.js"></script>
+
+  <!-- Add Firebase Database -->
+  <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-database.js"></script>
+
+  <script src="registration.js"></script>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      padding-top: 80px; /* Add padding to account for the height of the navbar */
+    }
+
+    h1 {
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    p {
+      text-align: center;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    label {
+      margin-bottom: 10px;
+    }
+
+    input[type="text"] {
+      width: 30%;
+      padding: 5px;
+      margin-bottom: 10px;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    .button-container button {
+      margin: 0 5px;
+      padding: 10px 20px;
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+    <div class="navbar">
+      <a href="home.html">Home</a>
+      <a href="registration.html">Registration</a>
+      <a href="career.html">Career</a>
+      <a href="skill.html">Skills</a>
+      <a href="update.html">Update Info</a>
+    </div>
+
+    <div id="titleCaptionContainer">
+        <div class="headerContainer">
+          <h1 id="classChoiceTitle">Class Choices</h1>
+        </div>
+        <p id="classChoiceCaption">You can take these classes</p>
+    </div>
+
+    <div id="classChoiceContainer">
+        <ul id="classChoice">
+            <!-- List items go here -->
+        </ul>
+    </div>
+
+    <div id="classInfoContainer">
+        <h1 id="classInfoHeader"></h1>
+        <p id="classInfo"></p>
+    </div>
+
+    <div id="nextSemesterContainer">
+        <h1 id="nextSemesterHeader"></h1>
+        <p id="nextSemester"></p>
+    </div>
+
+</body>
+</html>
+  
