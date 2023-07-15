@@ -3,9 +3,6 @@
 //Registration shows all the classes that the user can take
 //  based on the classes they have taken
 
-//Display a recommended schedule for the next semester based 
-//  on the classes taken and the career selected
-
 // configure FireBase
 var firebaseConfig = {
     apiKey: "AIzaSyB8MQgtQq2_AbIZEHMJrh3VkJDuvTTy5ss",
