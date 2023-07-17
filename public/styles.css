@@ -88,3 +88,60 @@ h1 {
     font-style: italic;
     color: rgba(0,0,0,0.6);
 }
+
+#titleCaptionContainer {
+    text-align: left;
+    padding-left: 20px;
+}
+
+#classChoiceTitle {
+    text-align: left;
+    font-size: 24px;
+    color: #333;
+}
+  
+#classChoiceCaption {
+    text-align: left;
+    font-size: 16px;
+    color: #666;
+}
+  
+#classChoiceContainer {
+    max-height: 500px;
+    overflow-y: auto;
+    position: relative;
+    width: 500px;
+    background-color: #b8b5b5;
+    padding: 20px;
+    margin-left: 20px;
+    box-sizing: border-box;
+    flex: 1;
+}
+  
+#classChoice {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+  
+#classChoice li {
+    margin-bottom: 10px;
+    color: #000000;
+}
+
+#classInfoTitle {
+    text-align: left;
+    font-size: 24px;
+    color: #333;
+}
+
+#classColumn{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Three columns with equal width */
+  grid-gap: 10px; /* Adjust the gap between columns if needed */
+}
+
+#classInfo{
+    align-items: left;
+    align-self: left;
+}
