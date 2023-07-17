@@ -110,11 +110,12 @@ h1 {
     max-height: 500px;
     overflow-y: auto;
     position: relative;
-    width: 450px;
+    width: 500px;
     background-color: #b8b5b5;
     padding: 20px;
     margin-left: 20px;
     box-sizing: border-box;
+    flex: 1;
 }
   
 #classChoice {
@@ -133,4 +134,14 @@ h1 {
     font-size: 24px;
     color: #333;
 }
-  
+
+#classColumn{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Three columns with equal width */
+  grid-gap: 10px; /* Adjust the gap between columns if needed */
+}
+
+#classInfo{
+    align-items: left;
+    align-self: left;
+}

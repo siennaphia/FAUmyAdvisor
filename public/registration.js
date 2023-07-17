@@ -22,45 +22,111 @@ var database = firebase.database();
 let core = {};
 let elective = {};
 let classesTaken = {};
+let coreTaken = {};
+let electiveTaken = {};
+let nextSemesterClass = {};
 
 // Fetch core classes from Firebase
 database.ref('/classes/core').once('value', function(coreSnapshot) {
     core = coreSnapshot.val();
-    populateCoreClasses();
-    adjustContainerSize();
 });
-
 // Fetch elective classes from Firebase
 database.ref('/classes/elective').once('value', function(electiveSnapshot) {
     elective = electiveSnapshot.val();
 });
-
 //Fetch classes taken by the current user from Firebase
 database.ref('/currentUser/classesTaken').once('value', function(classesTakenSnapshot) {
     classesTaken = classesTakenSnapshot.val();
 });
 
 
-function populateCoreClasses(){
+
+function populateClasses(){
 
     var classChoiceContainer = document.getElementById("classChoiceContainer");
     var classChoice = document.getElementById("classChoice");
 
-    for (var classId in core) {
-        if (core.hasOwnProperty(classId)) {
-            var classObj = core[classId];
-
+    for (var classId in nextSemesterClass) {
+        if (nextSemesterClass.hasOwnProperty(classId)) {
+            var classObj = nextSemesterClass[classId];
+            console.log(classObj);
             var listItem = document.createElement("li");
-            listItem.textContent = classId + " - " + classObj.name;
-            classChoice.appendChild(listItem);
+                listItem.textContent = classId + " - " + classObj["name"];
+                listItem.addEventListener("click", function() {
+                    classInfo(this.innerHTML); // Pass the innerHTML of the clicked element
+                  });
+                classChoice.appendChild(listItem);
         }
     }
 }
 
+//This function retrieves the classes taken by the user and
+//  marks off the classes taken from the core and elective lists.
+//  These are stored in object arrays for further processing.
+function userClassesTaken() {
+    for (const classes in core) {
+        if (classes in classesTaken) {
+            coreTaken[classes] = core[classes];
+        } 
+    }
+    for (const classes in elective) {
+
+        if (classes in classesTaken) {
+            electiveTaken[classes] = elective[classes];
+        }
+                      
+    }
+    console.log(coreTaken);
+    console.log(electiveTaken);
+}
+
+function nextSemester() {
+    
+    for (const classes in core) {
+        if (classesTaken[classes] == core[classes]["prerequisites"] || classesTaken[classes] == core[classes]["corequisites"]) {
+            nextSemesterClass[classes] = core[classes];
+        }
+    }
+    for (const classes in elective) {
+        if (classesTaken[classes] == elective[classes]["prerequisites"] || classesTaken[classes] == elective[classes]["corequisites"]) {
+            nextSemesterClass[classes] = elective[classes];
+        }
+    }
+    console.log(nextSemesterClass);
+}
+
+
+function classInfo(innerHTML) {
+    // Logic for class information
+    // Use the `innerHTML` argument to access the inner HTML of the clicked element
+   
+    var splitString = innerHTML.split(" - ");
+    var courseCode = splitString[0]
+    console.log(courseCode);
+    var courseInfo = nextSemesterClass[courseCode];
+    console.log(courseInfo);
+    //populate the class info
+    var classInfoHeader= document.getElementById("classInfoHeader");
+    var classInfoHTML= document.getElementById("classInfo");
+    classInfoHeader.innerHTML = courseCode;
+    
+    classInfoHTML.innerHTML = "<b>Course Name: </b>" + courseInfo["name"] + "<br>" +
+                                "<b>Instructor: </b>" + courseInfo["professor"] + "<br>" +
+                                "<b>Semester Available: </b>" + courseInfo["semesterAvailable"] + "<br>";
+    
+  }
+
 function adjustContainerSize() {
     var listItemHeight = 30; // Adjust the height of each list item in pixels
-    var numItems = classChoiceList.children.length;
+    var numItems = nextSemesterClass.children.length;
     var containerHeight = numItems * listItemHeight;
     classChoiceContainer.style.height = containerHeight + "px";
   }
 
+function classChecker() {
+  nextSemester();
+  populateClasses();
+  //adjustContainerSize();
+}
+
+classChecker();
