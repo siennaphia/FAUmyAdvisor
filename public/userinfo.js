@@ -58,7 +58,7 @@ function save(){
       .then(() => {
         // Show a success message when the data is saved
         const messageElement = document.getElementById('saveMessage');
-        messageElement.innerText = 'Classes saved successfully!';
+        messageElement.innerHTML = 'Classes saved successfully!';
         messageElement.style.color = 'green';
         setTimeout(() => {
           messageElement.innerText = '';
@@ -67,7 +67,7 @@ function save(){
       .catch((error) => {
         // Show an error message if the data couldn't be saved
         const messageElement = document.getElementById('saveMessage');
-        messageElement.innerText = 'Error saving classes. Please try again.';
+        messageElement.innerHTML = 'Error saving classes. Please try again.';
         messageElement.style.color = 'red';
         console.error('Error saving classes:', error);
         setTimeout(() => {
@@ -186,6 +186,7 @@ document.addEventListener('DOMContentLoaded', function() {
               const checkbox = document.getElementById(classId);
               if (checkbox) {
                 checkbox.checked = true;
+                
               }
             }
           }
