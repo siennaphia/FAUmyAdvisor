@@ -81,9 +81,18 @@
     
     <div id="titleCaptionContainer">
         <div class="headerContainer">
-          <h1 id="classChoiceTitle">Class Choices</h1>
+          <h1 id="classChoiceTitle"><b>Class Choices</b></h1>
         </div>
-        <p id="classChoiceCaption">You can take these classes <button onclick="classChecker()">Generate Classes</button></p>
+        <p id="semesterChoice" style="text-align: left;">
+          <select id="semester">
+            <option value="Fall">Fall</option>
+            <option value="Spring">Spring</option>
+          </select>
+          <select id="reason">
+            <option value="core">Core</option>
+            <option value="elective">Elective</option>
+            </select>
+          <button onclick="classChecker()">Generate Classes</button></p>
         
     </div>
     <div id="classColumn"> 
