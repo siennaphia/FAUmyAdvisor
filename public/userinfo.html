@@ -17,15 +17,17 @@
   <!-- Add Firebase Database -->
   <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-database.js"></script>
 
-  <script src="app.js"></script>
+  <script src="home.js"></script>
+  <script src="userinfo.js"></script>
   <link rel="stylesheet" href="styles.css">
 </head>
 
 <body> 
   <div class="navbar">
     <a href="index.html">Login</a>
+    <a href="#" id="logoutButton">Log Out</a>
     <a href="userinfo.html">Update Info</a>
-    <a href="home.html">Home</a>
+    <a href="dashboard.html">Home</a>
     <a href="registration.html">Registration</a>
     <a href="career.html">Career</a>
     <a href="#skill.html">Skills</a>
@@ -53,8 +55,10 @@
     <select id="careerSelect"></select>
   </div>
 
-  <div id="saveButtonContainer">
-    <button id="saveButton">Save/Update Information</button>
-  </div>
+  <!-- Save button -->
+<button onclick="save()" id="saveButton">Save</button>
+
+<!-- Save message element -->
+<p id="saveMessage"></p>
 </body>
 </html>

@@ -1,9 +1,3 @@
-//Displays the registration page
-
-//Registration shows all the classes that the user can take
-//  based on the classes they have taken
-
-// configure FireBase
 var firebaseConfig = {
     apiKey: "AIzaSyB8MQgtQq2_AbIZEHMJrh3VkJDuvTTy5ss",
     authDomain: "myadvisor-f1061.firebaseapp.com",
@@ -13,12 +7,15 @@ var firebaseConfig = {
     messagingSenderId: "560337324833",
     appId: "1:560337324833:web:f98e380915a03ff55a0c60",
     measurementId: "G-N2V217YPX0"
-  };
+};
 
-  // initialize FireBase
 firebase.initializeApp(firebaseConfig);
 var database = firebase.database();
 
+//Displays the registration page
+
+//Registration shows all the classes that the user can take
+//  based on the classes they have taken
 let core = {};
 let elective = {};
 let classesTaken = {};

@@ -1,0 +1,81 @@
+
+<!-- Coding By CodingNepal - youtube.com/codingnepal -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="styles.css">
+   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Font Link for Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    <script src="Dashboard.js" defer></script>
+    <script>
+
+      var skillAmt = 11;
+      
+      window.onload = function(){
+        var skillAmtBox = document.getElementById("skills");
+        skillAmtBox.textContent = skillAmt;
+        var rectDate = document.getElementById("currDate");
+        var currentDate = new Date();
+        var formattedDate = currentDate.toLocaleDateString("en-US", {
+          month: "long",
+          day: "numeric",
+          year: "numeric"
+        });
+        rectDate.textContent = formattedDate;
+      }
+
+      
+    </script>
+  </head>
+  <body>
+    <div class="navbar">
+    <a href="index.html">Login</a>
+    <a href="#" id="logoutButton">Log Out</a>
+    <a href="userinfo.html">Update Info</a>
+    <a href="dashboard.html">Home</a>
+    <a href="registration.html">Registration</a>
+    <a href="career.html">Career</a>
+    <a href="#skill.html">Skills</a>
+    </div>
+    <div class="wrapper">
+      <header>
+        <p class="current-date"></p>
+        <div class="icons">
+          <span id="prev" class="material-symbols-rounded">chevron_left</span>
+          <span id="next" class="material-symbols-rounded">chevron_right</span>
+        </div>
+      </header>
+      <div class="calendar">
+        <ul class="weeks">
+          <li>Sun</li>
+          <li>Mon</li>
+          <li>Tue</li>
+          <li>Wed</li>
+          <li>Thu</li>
+          <li>Fri</li>
+          <li>Sat</li>
+        </ul>
+        <ul class="days"></ul>
+      </div>
+    </div>
+    <div class="rectangle">
+      <h2 id="currDate">...</h2>
+      <hr class="blackLine">
+      <p id="currentDateEvents">Nothing Important Today</p>
+    </div>
+    <div class="circle-container">
+      <div class="circle-header">Number of Skills Collected</div>
+      <div class="circle" id="skills">0</div>
+    </div>
+  <div class="logout">
+    <a href=index.html>Log Out</a>
+  </div>
+  <div class="git">
+    <a href="https://github.com/siennaphia/FAUmyAdvisor">Project GitHub</a>
+  </div>
+    
+  </body>
+</html>
