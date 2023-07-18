@@ -10,7 +10,7 @@
   <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-app.js"></script>
 
   <!-- Add Firestore products -->
-  <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-firestore.js"></script>
+  <script src="https://hfwww.gstatic.com/firebasejs/8.0.1/firebase-firestore.js"></script>
 
   <!-- Add Firebase Authentication -->
   <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-auth.js"></script>
@@ -18,7 +18,8 @@
   <!-- Add Firebase Database -->
   <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-database.js"></script>
 
-  <script src="app.js"></script>
+  <script src="index.js"></script>
+  
   <link rel="stylesheet" href="styles.css">
   <style>
     body {
@@ -69,68 +70,27 @@
   </style>
 </head>
 
-
 <body>
   <div class="navbar">
     <a href="index.html">Login</a>
   </div>
   <h1>Welcome to MyAdvisor</h1>
-  <p>Please log in using your Z number.</p>
+  <p>Please login with your email and password</p>
+  
   <form id="loginForm">
-    <label for="zNumberInput">Z Number:</label>
-    <input type="text" id="zNumberInput" required>
-    <div class="button-container">
-      <button type="submit">Log In</button>
-      <button type="button" onclick="registerUser()">Register</button>
-    </div>
+    <label for="emailInput">Email:</label>
+    <input type="email" id="emailInput" required>
+
+    <label for="passwordInput">Password:</label>
+    <input type="password" id="passwordInput" required>
+
+    <button type="submit">Login</button>
+    <button type="button" onclick="registerUser()">Register</button>
   </form>
 
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
-  <script src="app.js"></script>
-  <script>
-    function registerUser() {
-      var zNumber = document.getElementById("zNumberInput").value;
-      if (zNumber) {
-        var usersRef = database.ref('/users');
-        usersRef.once('value', function(snapshot) {
-          var users = snapshot.val();
-          if (!users || !users[zNumber]) {
-            usersRef.child(zNumber).set({
-              auth: "", // Set the appropriate authentication method
-              classesTaken: [],
-              skills: {},
-              intendedCareer: "",
-              firstName: "",
-              lastName: "",
-              zNumber: zNumber
-            });
-            alert("Registration successful!");
-            window.location.href = "userinfo.html"; // Redirect to userinfo.html
-          } else {
-            alert("User with Z Number " + zNumber + " already exists.");
-          }
-        });
-      } else {
-        alert("Please enter a valid Z Number.");
-      }
-    }
-
-    document.getElementById("loginForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-      var zNumber = document.getElementById("zNumberInput").value;
-      var usersRef = database.ref('/users');
-      usersRef.once('value', function(snapshot) {
-        var users = snapshot.val();
-        if (users && users[zNumber]) {
-          alert("Login successful!");
-          window.location.href = "userinfo.html"; // Redirect to userinfo.html
-        } else {
-          alert("User with Z Number " + zNumber + " does not exist.");
-        }
-      });
-    });
-  </script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js"></script>
 </body>
 
 </html>
