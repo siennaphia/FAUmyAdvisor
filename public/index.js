@@ -1,3 +1,17 @@
+var firebaseConfig = {
+  apiKey: "AIzaSyB8MQgtQq2_AbIZEHMJrh3VkJDuvTTy5ss",
+  authDomain: "myadvisor-f1061.firebaseapp.com",
+  databaseURL: "https://myadvisor-f1061-default-rtdb.firebaseio.com",
+  projectId: "myadvisor-f1061",
+  storageBucket: "myadvisor-f1061.appspot.com",
+  messagingSenderId: "560337324833",
+  appId: "1:560337324833:web:f98e380915a03ff55a0c60",
+  measurementId: "G-N2V217YPX0"
+};
+
+firebase.initializeApp(firebaseConfig);
+var database = firebase.database();
+var auth = firebase.auth();
 
   // Function to register a new user
   function registerUser() {
@@ -36,7 +50,7 @@
       window.location.href = "userinfo.html";
     }
   });
-  
+  /*
   document.getElementById("loginForm").addEventListener("submit", function (e) {
     e.preventDefault();
     var email = document.getElementById("emailInput").value;
@@ -59,4 +73,27 @@
       alert("Please enter a valid email and password.");
     }
   });
+*/
+function login(){
+  var email = document.getElementById("emailInput").value;
+  var password = document.getElementById("passwordInput").value;
+
+  if (email && password) {
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        alert("Login successful!");
+        window.location.href = "userinfo.html"; // Redirect to userinfo.html
+      })
+      .catch((error) => {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        alert("Login failed: " + errorMessage);
+      });
+  } else {
+    alert("Please enter a valid email and password.");
+  }
+
+}
   

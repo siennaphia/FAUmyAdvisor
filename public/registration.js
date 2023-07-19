@@ -108,8 +108,7 @@ function userClassesTaken() {
 
         if (classes in classesTaken) {
             electiveTaken[classes] = elective[classes];
-        }
-                      
+        }         
     }
 
 }

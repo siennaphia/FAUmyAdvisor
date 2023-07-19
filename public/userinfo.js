@@ -27,6 +27,8 @@ database.ref('/classes').once('value', function(snapshot) {
   createCheckboxes();
 });
 
+
+
 // Populate the career select dropdown with career options
 function populateCareerSelect() {
   const careerSelect = document.getElementById('careerSelect');
@@ -39,21 +41,68 @@ function populateCareerSelect() {
   }
 }
 
-function save(){
+async function save(){
   const currentUser = firebase.auth().currentUser;
   if (currentUser) {
     const firstName = document.getElementById('firstNameInput').value;
     const lastName = document.getElementById('lastNameInput').value;
     const careerSelect = document.getElementById('careerSelect');
     const intendedCareer = careerSelect.value;
-    console.log(firstName, lastName, careerSelect, intendedCareer)
+    const classesTaken = getCheckedClasses();
+   
 
-    // Update the user data in Firebase under the user's UID
+    //pull userData data from firebase
+    await database.ref('/users/' + currentUser.uid + '/skills').once('value', function(snapshot) {
+      userData= snapshot.val();
+      userDataExist = snapshot.exists();
+    });
+
+    await database.ref('/users/' + currentUser.uid + '/classesTaken').once('value', function(snapshot) {
+      previousUserClassTaken= snapshot.val();
+    });
+
+    let skills = skillChecker(classesTaken,previousUserClassTaken);
+
+
+    console.log(userData)
+    console.log("=======================")
+    console.log(skills)
+
+
+    // Let's assume that user and userExist are provided
+
+    if (userDataExist && Object.keys(skills).length !== 0){
+      for (const skill in skills){
+        if (userData[skill]){
+          console.log('Before:', skills[skill]);  // Debugging line
+          skills[skill] += userData[skill];
+          console.log('After:', skills[skill]);  // Debugging line
+        } 
+      }
+    
+      for (const skill in userData){
+        if (!skills[skill]){
+          skills[skill] = userData[skill];
+        }
+      }
+    }
+    else if (Object.keys(skills).length === 0 && userDataExist){
+      skills = userData;
+    }
+    
+  
+    
+
+
+    
+
+    // Update the userData data in Firebase under the userData's UID
     database.ref('/users/' + currentUser.uid).update({
       firstName: firstName,
       lastName: lastName,
       intendedCareer: intendedCareer,
-      classesTaken: getCheckedClasses(),
+      classesTaken: classesTaken,
+      skills: skills
     })
       .then(() => {
         // Show a success message when the data is saved
@@ -76,6 +125,33 @@ function save(){
       });
   }
 }
+
+function skillChecker(classTaken, previousUserClassTaken){
+  skills ={};
+
+  for (const type in classes)
+  {
+    for (const id in classes[type])
+    {
+      if (classTaken.includes(id))
+      {
+        //check if id is in previousUserClassTaken
+        if (previousUserClassTaken != null && previousUserClassTaken.includes(id)){
+          //pass
+        }
+        else{
+          for (const skill in classes[type][id]["skillsTaught"])
+          {
+            skills[skill] = classes[type][id]["skillsTaught"][skill];
+          }
+        }
+  
+      }
+    }
+  }
+  return skills 
+}
+
 
 // Create checkboxes for the classes and display them in a table
 function createCheckboxes() {
@@ -104,7 +180,7 @@ function createCheckboxes() {
         const classId = e.target.value;
         const isChecked = e.target.checked;
 
-        const currentUser = firebase.auth().currentUser; // Fetch the current user
+        const currentUser = firebase.auth().currentUser; // Fetch the current userData
 
         if (currentUser) {
           const classesTaken = currentUser.classesTaken || [];
@@ -122,8 +198,6 @@ function createCheckboxes() {
             }
           }
 
-          // Update the classesTaken value in the database
-          database.ref('/users/' + currentUser.uid).update({ classesTaken: classesTaken });
         }
       });
 
@@ -166,11 +240,11 @@ document.addEventListener('DOMContentLoaded', function() {
   // Add click event listener to the "Log Out" button
   document.getElementById("logoutButton").addEventListener("click", logoutUser);
 
-  // Fetch the current user from Firebase
-  firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-      // Fetch user data from Firebase under the user's UID
-      database.ref('/users/' + user.uid).once('value')
+  // Fetch the current userData from Firebase
+  firebase.auth().onAuthStateChanged(function(userData) {
+    if (userData) {
+      // Fetch userData data from Firebase under the userData's UID
+      database.ref('/users/' + userData.uid).once('value')
         .then((snapshot) => {
           const userData = snapshot.val();
 
@@ -180,7 +254,7 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('lastNameInput').value = userData.lastName;
             document.getElementById('careerSelect').value = userData.intendedCareer;
 
-            // Check the checkboxes for the classes taken by the user
+            // Check the checkboxes for the classes taken by the userData
             const classesTaken = userData.classesTaken || [];
             for (const classId of classesTaken) {
               const checkbox = document.getElementById(classId);
@@ -192,13 +266,13 @@ document.addEventListener('DOMContentLoaded', function() {
           }
         })
         .catch((error) => {
-          console.error("Error fetching user data:", error);
+          console.error("Error fetching userData data:", error);
         });
     }
   });
 });
 
-// Log out the user
+// Log out the userData
 function logoutUser() {
   firebase.auth().signOut().then(() => {
     // Sign-out successful.
