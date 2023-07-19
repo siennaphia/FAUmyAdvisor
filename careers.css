@@ -1,0 +1,180 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  background-color: #333;
+  overflow: hidden;
+}
+
+.navbar a {
+  float: left;
+  color: #fff;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.navbar a:hover {
+  background-color: #ddd;
+  color: #333;
+}
+
+.navbar a.active {
+  background-color: #007bff;
+  color: #fff;
+}
+
+#welcomeMessage {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin: 20px;
+}
+
+#mainContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#chartContainer {
+  width: 100%;
+  max-width: 800px;
+  margin-bottom: 20px;
+}
+
+#qualificationContainer {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+#qualificationStatus,
+#qualificationClasses {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+}
+
+.qualification-classes-header {
+  margin-bottom: 10px;
+}
+
+.qualification-classes-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+}
+
+.qualification-class-item {
+  display: flex;
+  align-items: center;
+}
+
+.qualification-class-item::before {
+  content: "•";
+  margin-right: 5px;
+}
+
+
+
+
+
+#generateSkillsContainer {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#careerForm {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-basis: 48%;
+}
+
+#careerForm label {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin-right: 10px;
+}
+
+.custom-select {
+  position: relative;
+  display: inline-block;
+}
+
+.custom-select select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: none;
+  background: none;
+  padding-right: 24px;
+  cursor: pointer;
+}
+
+.custom-select .select-arrow {
+  position: absolute;
+  top: 50%;
+  right: 6px;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid #000;
+  pointer-events: none;
+}
+
+#generateSkillsButton {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+#generateSkillsButton:hover {
+  background-color: #0069d9;
+}
+
+#skillsChart {
+  width: 100%;
+}
+
+/* Chart.js colors */
+.chart-background-color {
+  background-color: rgba(75, 192, 192, 0.2);
+}
+
+.chart-border-color {
+  border-color: rgba(75, 192, 192, 1);
+}
+
+.chart-background-color-alt {
+  background-color: rgba(255, 99, 132, 0.2);
+}
+
+.chart-border-color-alt {
+  border-color: rgba(255, 99, 132, 1);
+}
