@@ -21,70 +21,28 @@
   <script src="app.js"></script>
   <script src="registration.js"></script>
   
-  <link rel="stylesheet" href="styles.css">
-  <style>
-    body {
-      padding-top: 80px; /* Add padding to account for the height of the navbar */
-    }
-
-    h1 {
-      margin-top: 40px;
-      text-align: center;
-    }
-
-    p {
-      text-align: center;
-    }
-
-    form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 20px;
-    }
-
-    label {
-      margin-bottom: 10px;
-    }
-
-    input[type="text"] {
-      width: 30%;
-      padding: 5px;
-      margin-bottom: 10px;
-    }
-
-    .button-container {
-      display: flex;
-      justify-content: center;
-      margin-top: 10px;
-    }
-
-    .button-container button {
-      margin: 0 5px;
-      padding: 10px 20px;
-      background-color: #4caf50;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-  </style>
+  <link rel="icon" href="logo.ico" type="image/x-icon">
+  <link rel="stylesheet" href="registration.css">
 </head>
 
 <body>
-  <div class="navbar">
-    <a href="index.html">Login</a>
-    <a href="#" id="logoutButton">Log Out</a>
-    <a href="userinfo.html">Update Info</a>
-    <a href="registration.html">Registration</a>
-    <a href="career.html">Career</a>
-    <a href="#skill.html">Skills</a>
-  </div>
+  <div class = "navbar">
+    <nav>
+      <img src="navbar_logo.png" alt="Logo" class="logo">
+        <ul>
+          <li><a href="#profile">Profile</a></li>
+          <li><a href="#registration">Registration</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#career">Career</a></li>
+        </ul>
+    </nav> 
+    <a href="#" class="logout">Logout</a>
+  </div> 
     
-    <div id="titleCaptionContainer">
-        <div class="headerContainer">
-          <h1 id="classChoiceTitle"><b>Class Choices</b></h1>
-        </div>
+  <div id="titleCaptionContainer">
+    <div class="headerContainer">
+      <h1 id="classChoiceTitle"><b>Class Choices</b></h1>
+      </div>
         <p id="semesterChoice" style="text-align: left;">
           <select id="semester">
             <option value="Fall">Fall</option>
@@ -94,28 +52,26 @@
             <option value="core">Core</option>
             <option value="elective">Elective</option>
             </select>
-          <button onclick="classChecker()">Generate Classes</button></p>
-        
-    </div>
-    <div id="classColumn"> 
+          <button onclick="classChecker()">Generate Classes</button></p>    
+  </div>
+
+  <div id="classColumn"> 
     <div id="classChoiceContainer">
-        <ul id="classChoice">
-            <!-- List items go here -->
-        </ul>
-    </div>
+      <ul id="classChoice">
+         <!-- List items go here -->
+      </ul>
+  </div>
 
-    <div id="classInfoContainer">
-        <h1 id="classInfoHeader"></h1>
-        <p id="classInfo"></p>
-    </div>
-    </div>
+  <div id="classInfoContainer">
+    <h1 id="classInfoHeader"></h1>
+    <p id="classInfo"></p>
+  </div>
+  
 
-    <div id="nextSemesterContainer">
-        <h1 id="nextSemesterHeader"></h1>
-        <p id="nextSemester"></p>
-    </div>
-
-
+  <div id="nextSemesterContainer">
+    <h1 id="nextSemesterHeader"></h1>
+    <p id="nextSemester"></p>
+  </div>
 </body>
 </html>
   

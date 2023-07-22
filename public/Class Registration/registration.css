@@ -1,0 +1,90 @@
+/* styles.css */
+
+body{
+    background: linear-gradient(to left, #C20114, #054A91);
+    color: #000000;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #ECEBF3; /* Heading text color */
+}
+
+button, .button {
+    background-color: #7B7A7A; /* Button background color */
+    color: #000000; /* Button text color */
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+/*#################################################*/
+/*THIS CODE TAKES CARE OF THE NAVIGATION BAR 
+    AND THE LOGOUT BUTTON.
+DO NOT ALTER*/
+/*#################################################*/
+/* Center the navigation bar */
+.logo {
+    position: absolute;
+    top: 5px; /* Adjust the top position as needed */
+    left: 0px; /* Adjust the left position as needed */
+    max-width: 120px; /* Adjust the size of the logo */
+    max-height: 120px; /* Adjust the size of the logo */
+    padding: 0px; /* Add padding around the logo if needed */
+}
+.navbar {
+    display: flex;
+    justify-content: center;
+    background-color: #7B7A7A;
+    padding-bottom: 10px; 
+}
+
+ul {
+    
+    list-style-type: none;
+    background-color: #7B7A7A;
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+}
+  
+li {
+    margin-top: 10px;
+}
+ 
+a {  
+    text-decoration: none;
+    background-color: #7B7A7A;
+    color: #000000;
+    font-family: monospace;
+    font-weight: bold; 
+    font-size: 28px;
+    padding: 10px;
+}
+  
+/* Hover effect for links */
+a:hover {
+    background-color: #0C120C; /* Background color on hover */
+    color: #ECEBF3; /* Text color on hover */
+}
+
+.logout {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    background-color: #7B7A7A;
+    color: #000000; 
+    font-weight: bold;
+    font-size: 28px;
+}
+
+.logout:hover {
+    background-color: #0C120C; /* Background color on hover */
+    color: #ECEBF3; /* Text color on hover */
+    cursor: pointer;
+}
+
+/*#################################################*/
+/*#################################################*/  
