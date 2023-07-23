@@ -3,234 +3,238 @@
 DO NOT ALTER*/
 /*#################################################*/
 body{
-  background: linear-gradient(to left, #C20114, #054A91);
-  color: #000000;
-  font-family: Arial, Helvetica, sans-serif;
-  margin: 0;
-  padding: 0;
+    background: linear-gradient(to left, #C20114, #054A91);
+    color: #000000;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: #ECEBF3; /* Heading text color */
+    color: #ECEBF3; /* Heading text color */
 }
 
 button, .button {
-  background-color: #7B7A7A; /* Button background color */
-  color: #000000; /* Button text color */
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
+    background-color: #ffffff; /* Button background color */
+    color: #000000; /* Button text color */
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    transition: background-color 0.3s;
+    cursor: pointer;
 }
 
 /*#################################################*/
 /*THIS CODE TAKES CARE OF THE NAVIGATION BAR 
-  AND THE LOGOUT BUTTON.
+    AND THE LOGOUT BUTTON.
 DO NOT ALTER*/
 /*#################################################*/
 /* Center the navigation bar */
 .logo {
-  position: absolute;
-  top: 5px; /* Adjust the top position as needed */
-  left: 0px; /* Adjust the left position as needed */
-  max-width: 120px; /* Adjust the size of the logo */
-  max-height: 120px; /* Adjust the size of the logo */
-  padding: 0px; /* Add padding around the logo if needed */
+    position: absolute;
+    top: 5px; /* Adjust the top position as needed */
+    left: 0px; /* Adjust the left position as needed */
+    max-width: 120px; /* Adjust the size of the logo */
+    max-height: 120px; /* Adjust the size of the logo */
+    padding: 0px; /* Add padding around the logo if needed */
 }
 .navbar {
-  display: flex;
-  justify-content: center;
-  background-color: #7B7A7A;
-  padding-bottom: 10px; 
+    display: flex;
+    justify-content: center;
+    background-color: #ffffff;
+    padding-bottom: 10px; 
 }
 
 ul {
+    
+    list-style-type: none;
+    background-color: #ffffff;
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+}
   
-  list-style-type: none;
-  background-color: #7B7A7A;
-  margin: 0px;
-  padding: 0px;
-  display: flex;
-}
-
 li {
-  margin-top: 10px;
+    margin-top: 10px;
 }
-
+ 
 a {  
-  text-decoration: none;
-  background-color: #7B7A7A;
-  color: #000000;
-  font-family: monospace;
-  font-weight: bold; 
-  font-size: 28px;
-  padding: 10px;
+    text-decoration: none;
+    background-color: #ffffff;
+    color: #000000;
+    font-family: monospace;
+    font-weight: bold; 
+    font-size: 28px;
+    padding: 10px;
+    transition: background-color 0.3s;
 }
-
+  
 /* Hover effect for links */
 a:hover {
-  background-color: #0C120C; /* Background color on hover */
-  color: #ECEBF3; /* Text color on hover */
+    background-color: #0C120C; /* Background color on hover */
+    color: #ECEBF3; /* Text color on hover */
 }
 
 .logout {
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  background-color: #7B7A7A;
-  color: #000000; 
-  font-weight: bold;
-  font-size: 28px;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    background-color: #ffffff;
+    color: #000000; 
+    font-weight: bold;
+    font-size: 28px;
 }
 
 .logout:hover {
-  background-color: #0C120C; /* Background color on hover */
-  color: #ECEBF3; /* Text color on hover */
-  cursor: pointer;
+    background-color: #0C120C; /* Background color on hover */
+    color: #ECEBF3; /* Text color on hover */
+    cursor: pointer;
 }
 
 /*#################################################*/
-/*#################################################*/ 
+/*#################################################*/  
 
 #welcomeMessage {
-  font-size: 24px;
-  font-weight: bold;
-  margin: 20px;
-}
-
-#mainContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  background-color: #ECEBF3;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-#chartContainer {
-  width: 100%;
-  max-width: 800px;
-  margin-bottom: 20px;
-}
-
-#qualificationContainer {
-  width: 100%;
-  max-width: 800px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-
-#qualificationStatus,
-#qualificationClasses {
-  font-size: 16px;
-  font-weight: bold;
-  color: #333;
-}
-
-.qualification-classes-header {
-  margin-bottom: 10px;
-}
-
-.qualification-classes-list {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 10px;
-}
-
-.qualification-class-item {
-  display: flex;
-  align-items: center;
-}
-
-.qualification-class-item::before {
-  content: "•";
-  margin-right: 5px;
-}
-
-#generateSkillsContainer {
-  width: 100%;
-  max-width: 800px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
-
-#careerForm {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-bottom: 20px;
-  flex-basis: 48%;
-}
-
-#careerForm label {
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
-  margin-right: 10px;
-}
-
-.custom-select {
-  position: relative;
-  display: inline-block;
-}
-
-.custom-select select {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  border: none;
-  background: none;
-  padding-right: 24px;
-  cursor: pointer;
-}
-
-.custom-select .select-arrow {
-  position: absolute;
-  top: 50%;
-  right: 6px;
-  transform: translateY(-50%);
-  width: 0;
-  height: 0;
-  border-left: 4px solid transparent;
-  border-right: 4px solid transparent;
-  border-top: 4px solid #000;
-  pointer-events: none;
-}
-
-#generateSkillsButton {
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
-}
-
-#generateSkillsButton:hover {
-  background-color: #0C120C; /* Background color on hover */
-  color: #ECEBF3; /* Text color on hover */
-}
-
-#skillsChart {
-  width: 100%;
-}
-
-/* Chart.js colors */
-.chart-background-color {
-  background-color: rgba(75, 192, 192, 0.2);
-}
-
-.chart-border-color {
-  border-color: rgba(75, 192, 192, 1);
-}
-
-.chart-background-color-alt {
-  background-color: rgba(255, 99, 132, 0.2);
-}
-
-.chart-border-color-alt {
-  border-color: rgba(255, 99, 132, 1);
-}
+    font-size: 24px;
+    font-weight: bold;
+    margin: 20px;
+  }
+  
+  #mainContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #ECEBF3;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  #chartContainer {
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 20px;
+  }
+  
+  #qualificationContainer {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  #qualificationStatus,
+  #qualificationClasses {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .qualification-classes-header {
+    margin-bottom: 10px;
+  }
+  
+  .qualification-classes-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+  }
+  
+  .qualification-class-item {
+    display: flex;
+    align-items: center;
+  }
+  
+  .qualification-class-item::before {
+    content: "•";
+    margin-right: 5px;
+  }
+  
+  #generateSkillsContainer {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  #careerForm {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-basis: 48%;
+  }
+  
+  #careerForm label {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-right: 10px;
+  }
+  
+  .custom-select {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .custom-select select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: none;
+    background: none;
+    padding-right: 24px;
+    cursor: pointer;
+  }
+  
+  .custom-select .select-arrow {
+    position: absolute;
+    top: 50%;
+    right: 6px;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 4px solid #000;
+    pointer-events: none;
+  }
+  
+  #generateSkillsButton {
+    background-color: #7B7A7A;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  #generateSkillsButton:hover {
+    background-color: #0C120C; /* Background color on hover */
+    color: #ECEBF3; /* Text color on hover */
+  }
+  
+  #skillsChart {
+    width: 100%;
+  }
+  
+  /* Chart.js colors */
+  .chart-background-color {
+    background-color: rgba(75, 192, 192, 0.2);
+  }
+  
+  .chart-border-color {
+    border-color: rgba(75, 192, 192, 1);
+  }
+  
+  .chart-background-color-alt {
+    background-color: rgba(255, 99, 132, 0.2);
+  }
+  
+  .chart-border-color-alt {
+    border-color: rgba(255, 99, 132, 1);
+  }

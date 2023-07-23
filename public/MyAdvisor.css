@@ -1,5 +1,7 @@
-/* styles.css */
-
+/*#################################################*/
+/*THIS CODE MAKES A STYLE TEMPLATE FOR THE PAGE
+DO NOT ALTER*/
+/*#################################################*/
 body{
     background: linear-gradient(to left, #C20114, #054A91);
     color: #000000;
@@ -13,10 +15,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 button, .button {
-    background-color: #7B7A7A; /* Button background color */
+    background-color: #ffffff; /* Button background color */
     color: #000000; /* Button text color */
     border: none;
+    border-radius: 20px;
     padding: 10px 20px;
+    transition: background-color 0.3s;
     cursor: pointer;
 }
 
@@ -37,14 +41,14 @@ DO NOT ALTER*/
 .navbar {
     display: flex;
     justify-content: center;
-    background-color: #7B7A7A;
+    background-color: #ffffff;
     padding-bottom: 10px; 
 }
 
 ul {
     
     list-style-type: none;
-    background-color: #7B7A7A;
+    background-color: #ffffff;
     margin: 0px;
     padding: 0px;
     display: flex;
@@ -56,12 +60,13 @@ li {
  
 a {  
     text-decoration: none;
-    background-color: #7B7A7A;
+    background-color: #ffffff;
     color: #000000;
     font-family: monospace;
     font-weight: bold; 
     font-size: 28px;
     padding: 10px;
+    transition: background-color 0.3s;
 }
   
 /* Hover effect for links */
@@ -74,7 +79,7 @@ a:hover {
     position: absolute;
     top: 0px;
     right: 0px;
-    background-color: #7B7A7A;
+    background-color: #ffffff;
     color: #000000; 
     font-weight: bold;
     font-size: 28px;
@@ -87,4 +92,6 @@ a:hover {
 }
 
 /*#################################################*/
-/*#################################################*/  
+/*#################################################*/
+
+/*ADD THE STYLES FOR THE PAGE BELOW THIS LINE*/
