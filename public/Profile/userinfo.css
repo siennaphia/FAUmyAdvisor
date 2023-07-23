@@ -86,10 +86,11 @@ button:focus {
 }
 
 .card1 {
-    width: 90%;
+    width: 100%;
     padding: 20px 15px 5px 15px;
+    box-sizing: border-box; 
+    min-height: 100%
 }
-
 
 .card2 {
     width: 50%;
@@ -126,6 +127,12 @@ button:focus {
 .msg-info {
     padding-left: 15px;
     margin-bottom: 30px;
+}
+
+.col-lg-12 {
+    flex-basis: 100%; 
+    margin: 1%; 
+    box-sizing: border-box; 
 }
 
 .btn-color {
@@ -173,11 +180,27 @@ a:hover {
 .sm-text {
     font-size: 15px;
 }
+.container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* This allows the items to wrap onto new lines */
+}
 
-@media screen and (max-width: 992px) {
+  .form-group.text-center {
+    margin-top: 20px;
+  }
+  
+  .btn-primary {
+    display: inline-block;
+    margin-top: 10px;
+  }
+  
+
+@media screen and (max-width: 1000px) {
     .card1 {
         width: 100%;
         padding: 40px 30px 10px 30px;
+        min-height: 100%
     }
 
     .card2 {
@@ -192,8 +215,11 @@ a:hover {
 
 @media screen and (max-width: 768px) {
     .container {
-        padding: 10px !important;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap; /* This allows the items to wrap onto new lines */
     }
+    
 
     .card2 {
         padding: 50px;
@@ -212,14 +238,16 @@ a:hover {
 .heading {
     text-align: center;
 }
+
 .row {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap; 
 }
 
 .col-lg-6 {
-    flex-basis: 45%; /* Adjust this to change the width of the columns */
-    margin: 1%; /* Adjust this to change the spacing between the columns */
+    flex-basis: 45%; 
+    margin: 1%; 
+    box-sizing: border-box; 
 }
 
 @media screen and (max-width: 992px) {
@@ -232,3 +260,4 @@ a:hover {
         margin: 0;
     }
 }
+
