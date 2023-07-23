@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Registration</title>
+
+  <!-- Update the version number as needed -->
+  <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-app.js"></script>
+
+  <!-- Add Firestore products -->
+  <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-firestore.js"></script>
+
+  <!-- Add Firebase Authentication -->
+  <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-auth.js"></script>
+
+  <!-- Add Firebase Database -->
+  <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-database.js"></script>
+
+  <script src="userinfo.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="userinfo.css">
+</head>
+
+
+<body>
+  <div class = "navbar">
+    <nav>
+      <img src="navbar_logo.png" alt="Logo" class="logo">
+        <ul>
+          <li><a href="#profile">Profile</a></li>
+          <li><a href="#registration">Registration</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#career">Career</a></li>
+        </ul>
+    </nav> 
+    <a href="#" class="logout">Logout</a>
+  </div> 
+
+  <br><br>
+
+  <div class="container py-5 mx-auto text-center">
+    <div class="card card0">
+      <div class="card card1">
+        <div class="row">
+          <div class="col-lg-12">
+              <h3 class="mb-5 heading">My Classes</h3>
+              <p id="classesTableCaption">Please enter all the classes you have taken or are currently taking.</p>
+              <div id="classesContainer">
+                  <table id="classesTable" class="table">
+                      <tbody id="classesTableBody">
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-lg-12">
+              <h3 class="mb-5 text-center heading">Personal Information</h3>
+              <form id="userInfoForm">
+                  <div class="form-group">
+                      <label for="firstNameInput" class="form-control-label text-muted">First Name:</label>
+                      <input type="text" id="firstNameInput" class="form-control">
+                  </div>
+                  <div class="form-group">
+                      <label for="lastNameInput" class="form-control-label text-muted">Last Name:</label>
+                      <input type="text" id="lastNameInput" class="form-control">
+                  </div>
+                  <div class="form-group">
+                      <label for="careerSelect" class="form-control-label text-muted">Intended Career:</label>
+                      <select id="careerSelect" class="form-control"></select>
+                  </div>
+              </form>
+          </div>
+      </div>
+      
+
+        <!-- Save button -->
+        <div class="row justify-content-center my-3 px-3">
+          <button onclick="save()" id="saveButton" class="btn-block btn-color">Save</button>
+        </div>
+
+        <!-- Save message element -->
+        <p id="saveMessage" class="msg-info"></p>
+
+      </div>
+
+    </div>
+  </div>
+
+</body>
+
+</html>
