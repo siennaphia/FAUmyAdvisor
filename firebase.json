@@ -4,6 +4,7 @@
   },
   "hosting": {
     "public": "public",
+    
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -27,5 +28,11 @@
       "enabled": true
     },
     "singleProjectMode": true
+  },
+  "functions": {
+    "source": "functions"
+  },
+  "storage": {
+    "rules": "storage.rules"
   }
 }
