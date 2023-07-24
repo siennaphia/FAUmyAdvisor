@@ -25,8 +25,8 @@ database.ref('/users/UID1').once('value', function (snapshot) {
   var currentUser = snapshot.val();
   var firstName = currentUser.firstName;
   var lastName = currentUser.lastName;
-  var welcomeMessage = document.getElementById('welcomeMessage');
-  welcomeMessage.textContent = 'Welcome to MyAdvisor, ' + firstName + ' ' + lastName + '!';
+  //var welcomeMessage = document.getElementById('welcomeMessage');
+  //welcomeMessage.textContent = 'Welcome to MyAdvisor, ' + firstName + ' ' + lastName + '!';
 });
 
 // event listener for the "Generate Skills" button
@@ -35,7 +35,6 @@ document.getElementById('generateSkillsButton').addEventListener('click', functi
   generateSkills();
 });
 
-// populate the career select dropdown with career options
 function populateCareerSelect(careers) {
   var careerSelect = document.getElementById('careerSelect');
 
@@ -45,6 +44,16 @@ function populateCareerSelect(careers) {
     option.textContent = career;
     careerSelect.appendChild(option);
   }
+
+  // Call updateWelcomeMessage to initialize the welcome message with the first selected career
+  updateWelcomeMessage();
+}
+
+function updateWelcomeMessage() {
+  var careerSelect = document.getElementById('careerSelect');
+  var selectedCareer = careerSelect.value;
+  var welcomeMessage = document.getElementById('welcomeMessage');
+  welcomeMessage.textContent = 'Selected Career: ' + selectedCareer;
 }
 
 // fetch required skills and user skills from Firebase and generate the skills chart
@@ -122,15 +131,15 @@ function createDoubleBarGraph(requiredSkills, userSkills) {
         {
           label: 'Required Skill Level',
           data: requiredSkillLevels,
-          backgroundColor: 'rgba(75, 192, 192, 0.2)',
-          borderColor: 'rgba(75, 192, 192, 1)',
+          backgroundColor: 'rgba(5, 74, 145, 0.2)',
+          borderColor: 'rgba(5, 74, 145, 1)',
           borderWidth: 1
         },
         {
           label: 'User Skill Level',
           data: test ,
-          backgroundColor: 'rgba(255, 99, 132, 0.2)',
-          borderColor: 'rgba(255, 99, 132, 1)',
+          backgroundColor: 'rgba(194, 1, 20, 0.2)',
+          borderColor: 'rgba(194, 1, 20, 1)',
           borderWidth: 1
         }
       ]
@@ -139,7 +148,7 @@ function createDoubleBarGraph(requiredSkills, userSkills) {
       scales: {
         y: {
           beginAtZero: true,
-          max: 5
+          max: 10
         }
       }
     }
@@ -280,14 +289,16 @@ function updateQualificationStatus(qualifies) {
     qualificationStatus.textContent = 'You do not currently qualify for this career.';
   }
 }
-
-// Update the qualification classes display
 function updateQualificationClasses(requiredClasses) {
   var qualificationClasses = document.getElementById('qualificationClasses');
-  qualificationClasses.textContent = ''; // Clear previous content
+  qualificationClasses.textContent = ''; // Clear previous contents
 
   if (requiredClasses.length > 0) {
-    qualificationClasses.textContent = 'Classes you can take to qualify:';
+    // Create a new div for the heading
+    var headingElement = document.createElement('div');
+    headingElement.textContent = 'Classes you can take to qualify:';
+    headingElement.id = 'qualificationClassesHeading'; // Add the CSS ID to the heading
+    qualificationClasses.appendChild(headingElement);
 
     var classesRef = database.ref('/classes');
 
@@ -300,18 +311,36 @@ function updateQualificationClasses(requiredClasses) {
 
           if (classTypeClasses && classTypeClasses.hasOwnProperty(className)) {
             var classInfo = classTypeClasses[className];
+            var classNameFromDatabase = classInfo.name;
             var skillsTaught = classInfo.skillsTaught || {};
             var skillList = Object.entries(skillsTaught)
               .map(([skill, level]) => `${skill}: ${level}`)
               .join(', ');
 
-            var classElement = document.createElement('div');
-            classElement.textContent = `${className} (${classType} - Skills Taught: ${skillList})`;
+           // ... your existing updateQualificationClasses function ...
+
+          // Inside the function, modify the class and skills elements creation as follows:
+          var classElement = document.createElement('div');
+          classElement.classList.add('className'); // Add the className class
+          classElement.textContent = `${className} (${classNameFromDatabase})`;
+
+          var skillsElement = document.createElement('div');
+          skillsElement.classList.add('skills'); // Add the skills class
+          skillsElement.textContent = `Skills Taught: ${skillList}`;
+
+
+            // Append both div elements to the qualificationClasses container
             qualificationClasses.appendChild(classElement);
+            qualificationClasses.appendChild(skillsElement);
+
+            // Add a line break between each class name and skills section
+            var lineBreak = document.createElement('br');
+            qualificationClasses.appendChild(lineBreak);
           }
         }
       });
     });
   }
 }
+
 

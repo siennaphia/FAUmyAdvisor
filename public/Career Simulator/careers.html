@@ -11,39 +11,46 @@
     <!-- add Firebase Realtime Database SDK -->
     <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-database.js"></script>
     <!-- include the CSS file -->
-    <link rel="icon" href="logo.ico" type="image/x-icon">
+    <link rel="icon" href="logo.ico" type="image/x-icon" />
     <link rel="stylesheet" type="text/css" href="careers.css" />
   </head>
   <body>
-    <div class = "navbar">
+    <div class="navbar">
       <nav>
-        <img src="navbar_logo.png" alt="Logo" class="logo">
-          <ul>
-            <li><a href="#profile">Profile</a></li>
-            <li><a href="#registration">Registration</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#career">Career</a></li>
-          </ul>
-      </nav> 
+        <img src="navbar_logo.png" alt="Logo" class="logo" />
+        <ul>
+          <li><a href="#profile">Profile</a></li>
+          <li><a href="#registration">Registration</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#career">Career</a></li>
+        </ul>
+      </nav>
       <a href="#" class="logout">Logout</a>
-    </div> 
+    </div>
     <!-- display the welcome message with the current user's name -->
-    <h1 id="welcomeMessage">Welcome to MyAdvisor</h1>
+    <h1 id="welcomeMessage">Selected Career:</h1>
 
     <div id="mainContainer">
-      <div id="chartContainer">
-        <!-- container for displaying the skills chart -->
-        <canvas id="skillsChart"></canvas>
-      </div>
-      <div id="qualificationContainer">
-        <div id="qualificationStatus"></div>
-        <div id="qualificationClasses"></div>
+      <div id="qualificationStatus"></div>
+      <div id="flexContainer">
+        <!-- Parent container for graph and classes -->
+        <div id="chartContainer">
+          <canvas id="skillsChart"></canvas>
+        </div>
+        <div id="qualificationClasses">
+          <!-- container for displaying the classes -->
+          <!-- class and skills elements will be added dynamically here -->
+        </div>
       </div>
       <form id="careerForm">
         <label for="careerSelect">Select your desired career:</label>
         <div class="custom-select">
           <!-- dropdown for selecting the desired career -->
-          <select id="careerSelect" required></select>
+          <select
+            id="careerSelect"
+            onchange="updateWelcomeMessage()"
+            required
+          ></select>
           <div class="select-arrow"></div>
         </div>
         <button id="generateSkillsButton" type="submit">Generate Skills</button>
@@ -51,6 +58,7 @@
     </div>
     <!-- include the Chart.js library -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <!-- include the JavaScript file with custom logic -->
     <script src="careers.js"></script>
   </body>
