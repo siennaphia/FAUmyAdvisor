@@ -2,79 +2,76 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Login</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login</title>
 
-  <!-- Update the version number as needed -->
-  <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-app.js"></script>
+    <!-- Update the version number as needed -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-app.js"></script>
 
-  <!-- Add Firestore products -->
-  <script src="https://hfwww.gstatic.com/firebasejs/8.0.1/firebase-firestore.js"></script>
+    <!-- Add Firestore products -->
+    <script src="https://hfwww.gstatic.com/firebasejs/8.0.1/firebase-firestore.js"></script>
 
-  <!-- Add Firebase Authentication -->
-  <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-auth.js"></script>
+    <!-- Add Firebase Authentication -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-auth.js"></script>
 
-  <!-- Add Firebase Database -->
-  <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-database.js"></script>
+    <!-- Add Firebase Database -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-database.js"></script>
 
-  <script src="../Login Page/index.js"></script>
-  
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="../Login Page/login.css">
-  
+    <script src="Login Page/index.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="Login Page/login.css">
+
 </head>
 
 <div class = "navbar">
-  <nav>
-    <img src="navbar_logo.png" alt="Logo" class="logo"> 
-      <ul>
+    <nav>
+    <img src="Login Page/navbar_logo.png" alt="Logo" class="logo"> 
+        <ul>
         <li><a href="#oops.html">Profile</a></li>
         <li><a href="#oops.html">Registration</a></li>
         <li><a href="#oops.html">Skills</a></li>
         <li><a href="#oops.html">Career</a></li>
-      </ul>
-  </nav> 
+        </ul>
+    </nav> 
 </div> 
 
 <div class="container px-4 py-5 mx-auto">
-  <div class="card card0">
-      <div class="d-flex flex-lg-row flex-column-reverse">
-          <div class="card card1">
-              <div class="row justify-content-center my-auto">
-                  <div class="col-md-8 col-10 my-5">
-                      <h3 class="mb-5 text-center heading">Welcome to MyAdvisor</h3>
+    <div class="card card0">
+        <div class="d-flex flex-lg-row flex-column-reverse">
+            <div class="card card1">
+                <div class="row justify-content-center my-auto">
+                    <div class="col-md-8 col-10 my-5">
+                        <h3 class="mb-5 text-center heading">Welcome to MyAdvisor</h3>
+                        <h6 class="msg-info">Please login to your account</h6>
+                        <form id="loginForm">
+                        <div class="form-group">
+                            <label class="form-control-label text-muted">Username</label>
+                            <input type="email" id="emailInput" name="email" placeholder="Email" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label text-muted">Password</label>
+                            <input type="password" id="passwordInput" name="psw" placeholder="Password" class="form-control" required>
+                        </div>
 
-                      <h6 class="msg-info">Please login to your account</h6>
-                    
-                      <form id="loginForm">
-                      <div class="form-group">
-                          <label class="form-control-label text-muted">Username</label>
-                          <input type="email" id="emailInput" name="email" placeholder="Email" class="form-control">
-                      </div>
-                      <div class="form-group">
-                          <label class="form-control-label text-muted">Password</label>
-                          <input type="password" id="passwordInput" name="psw" placeholder="Password" class="form-control" required>
-                      </div>
-
-                      <div class="row justify-content-center my-3 px-3">
-                          <button class="btn-block btn-color" type="submit" onclick="login()">Login</button>
-                      </div>
-                      </form>
-                  </div>
-              </div>
-              <div class="bottom text-center mb-5">
-                  <p href="#" class="sm-text mx-auto mb-3">Don't have an account?<button class="btn btn-white ml-2" type="button" onclick="registerUser()">Register</button></p>
-              </div>
-          </div>
-          <div class="card card2">
-              <div class="my-auto mx-md-5 px-md-5 right">
-                  <h3 class="text-white">We are more than an Audit</h3>
-                  <small class="text-white"> myAdvisor represents not just a tool for better course selection, but a comprehensive platform for fostering educated career decisions from the very beginning of your college career</small>
-              </div>
-          </div>
-      </div>
-  </div>
+                        <div class="row justify-content-center my-3 px-3">
+                            <button class="btn-block btn-color" type="submit" onclick="login()">Login</button>
+                        </div>
+                        <br>
+                        <p href="#" class="sm-text mx-auto mb-3">Don't have an account?<button class="btn btn-white ml-2" type="button" onclick="registerUser()">Register</button></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="card card2">
+                <div class="my-auto mx-md-5 px-md-5 right">
+                    <h3 class="text-white">We are more than an Audit</h3>
+                    <small class="text-white"> myAdvisor represents not just a tool for better course selection, but a comprehensive platform for fostering educated career decisions from the very beginning of your college career</small>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 </html>
