@@ -7,7 +7,8 @@ body{
 }
 
 h1, h2, h3, h4, h5, h6 {
-    color: #ECEBF3; /* Heading text color */
+    margin: 10px;
+    color: #ffffff; /* Heading text color */
 }
 
 p{
@@ -63,7 +64,6 @@ a {
     text-decoration: none;
     background-color: #ffffff;
     color: #000000;
-    font-family: monospace;
     font-weight: bold; 
     font-size: 28px;
     padding: 10px;
@@ -93,10 +93,62 @@ a:hover {
 }
 
 /*#################################################*/
-/*#################################################*/  
+/*#################################################*/
+
+h1{
+    font-size: 24px;
+}
+.semesterContainer{
+    display: flex;
+    align-items: center;
+}
+
+.dropdownSemester{
+    text-align: left;
+    font-size: 22px;
+}
+.registrationContainer {
+    display: flex; 
+}
+  
+.column {
+    flex: 1;
+    margin: 5px;
+    background-color: #ffffff;
+    color: #000000;
+    text-align: center;
+    font-size: 28px;
+    /* Optional: Add some styling to the columns */
+    border: none;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+h2,h3,h4{
+    color: #000000;
+    font-size: 22px;
+}
+
+.registrationContainer p{
+    color: #000000;
+    font-size: 18px;
+}
+
+#dropdownReason{
+    font-size: 14px;
+}
+
+#generateClasses{
+    background-color: #ffffff;
+    color: #054A91;
+    border: 2px solid #054A91; 
+    font-size: 14px;
+    margin: 0;
+    padding: 5px;
+}
 
 #generateClasses:hover{
-    background-color: #0C120C; /* Background color on hover */
-    color: #ECEBF3; /* Text color on hover */
+    background-color: #054A91; /* Background color on hover */
+    color: #ffffff; /* Text color on hover */
     cursor: pointer;
 }

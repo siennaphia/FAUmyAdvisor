@@ -261,3 +261,18 @@ a:hover {
     }
 }
 
+.logout {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    background-color: #ffffff;
+    color: #000000; 
+    font-weight: bold;
+    font-size: 23px;
+}
+
+.logout:hover {
+    background-color: #0C120C; /* Background color on hover */
+    color: #ECEBF3; /* Text color on hover */
+    cursor: pointer;
+}

@@ -31,7 +31,7 @@ var auth = firebase.auth();
             // Add other user data as needed
           });
           alert("Registration successful!");
-          window.location.href = "userinfo.html"; // Redirect to userinfo.html
+          window.location.href = "../Profile/userinfo.html"; // Redirect to userinfo.html
         })
         .catch((error) => {
           var errorCode = error.code;
@@ -47,33 +47,10 @@ var auth = firebase.auth();
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       // User is signed in, redirect to userinfo.html or any other authorized page
-      window.location.href = "userinfo.html";
+      window.location.href = "../Profile/userinfo.html";
     }
   });
-  /*
-  document.getElementById("loginForm").addEventListener("submit", function (e) {
-    e.preventDefault();
-    var email = document.getElementById("emailInput").value;
-    var password = document.getElementById("passwordInput").value;
-  
-    if (email && password) {
-      firebase
-        .auth()
-        .signInWithEmailAndPassword(email, password)
-        .then((userCredential) => {
-          alert("Login successful!");
-          window.location.href = "userinfo.html"; // Redirect to userinfo.html
-        })
-        .catch((error) => {
-          var errorCode = error.code;
-          var errorMessage = error.message;
-          alert("Login failed: " + errorMessage);
-        });
-    } else {
-      alert("Please enter a valid email and password.");
-    }
-  });
-*/
+
 function login(){
   var email = document.getElementById("emailInput").value;
   var password = document.getElementById("passwordInput").value;
@@ -84,7 +61,7 @@ function login(){
       .signInWithEmailAndPassword(email, password)
       .then((userCredential) => {
         alert("Login successful!");
-        window.location.href = "userinfo.html"; // Redirect to userinfo.html
+        window.location.href = "../Profile/userinfo.html"; // Redirect to userinfo.html
       })
       .catch((error) => {
         var errorCode = error.code;
@@ -96,4 +73,3 @@ function login(){
   }
 
 }
-  

@@ -4,17 +4,32 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Skills</title>
-  <link rel="stylesheet" href="skillsStyle.css">
+
+    <!-- Update the version number as needed -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-app.js"></script>
+
+    <!-- Add Firestore products -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-firestore.js"></script>
+  
+    <!-- Add Firebase Authentication -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-auth.js"></script>
+  
+    <!-- Add Firebase Database -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-database.js"></script>
+  
+  <link rel="stylesheet" href="skills.css">
+  <script src="skills.js"></script>
+  
 </head>
 <body>
   <div class = "navbar">
     <nav>
       <img src="navbar_logo.png" alt="Logo" class="logo">
         <ul>
-          <li><a href="#profile">Profile</a></li>
-          <li><a href="#registration">Registration</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#career">Career</a></li>
+          <li><a href="../Profile/userinfo">Profile</a></li>
+          <li><a href="../Class Registration/registration.html">Registration</a></li>
+          <li><a href="../Skill Display/skills.html">Skills</a></li>
+          <li><a href="../Career Simulator/career.html">Career</a></li>
         </ul>
     </nav> 
     <a href="#" class="logout">Logout</a>
@@ -32,7 +47,6 @@
   <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-database.js"></script>
 
-  <script src="skills.js"></script>
 
 </body>
 </html>
