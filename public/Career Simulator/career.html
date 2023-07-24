@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <title>MyAdvisor</title>
     <!-- include the Firebase App SDK -->
     <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-app.js"></script>
@@ -16,21 +17,48 @@
     <!-- include the Chart.js library -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- include the JavaScript file with custom logic -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="careers.js"></script>
-  </head>
-  <body>
-    <div class="navbar">
-      <nav>
-        <img src="navbar_logo.png" alt="Logo" class="logo" />
-        <ul>
-          <li><a href="../Profile/userinfo.html">Profile</a></li>
-          <li><a href="../Class Registration/registration.html">Registration</a></li>
-          <li><a href="../Skill Display/skills.html">Skills</a></li>
-          <li><a href="../Career Simulator/career.html">Career</a></li>
-        </ul>
-      </nav>
-      <a href="#" class="logout">Logout</a>
-    </div>
+</head>
+
+<nav class="navbar navbar-expand-lg navbar-red navbar-dark">
+  <div class="wrapper">
+  </div>  
+      <div class="container-fluid all-show">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+              <img src="navbar_logo.png" alt="Logo" class="logo"> 
+              <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#">About us</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="../Profile/userinfo.html">Profile</a>
+              </li>
+
+              <li class="nav-item">
+                  <a class="nav-link" href="../Class Registration/registration.html">Registration</a>
+              </li>
+
+              <li class="nav-item">
+                  <a class="nav-link" href="skills.html">Skills</a>
+              </li>
+
+              <li class="nav-item">
+                  <a class="nav-link" href="../Career Simulator/career.html">Career</a>
+              </li>
+
+              </ul>
+              <div class="d-flex flex-column sim">
+                  <span> <font color = "white">0 Skills Aquired</font></span>    
+              </div>
+          </div>
+      </div>
+  </nav>
+
+<body>
     <!-- display the welcome message with the current user's name -->
     <h1 id="welcomeMessage">Selected Career:</h1>
 
@@ -54,14 +82,8 @@
               ></select>
               <div class="select-arrow"></div>
             </div>
-            
             <button id="generateSkillsButton" type="submit">Generate Skills</button>
           </form>
-
-          <br><br>
-          <br><br>
-
-
         </div>
         <div id="qualificationClasses">
           <!-- container for displaying the classes -->
@@ -73,6 +95,7 @@
 
     </div>
   </body>
+  
 </html>
 
 

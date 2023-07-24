@@ -1,3 +1,68 @@
+
+
+
+body{
+    background-color: #ffffff;
+}
+
+.navbar-nav>li>a{
+    text-transform: uppercase;
+    font-size: 16px;
+    margin-right:20px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+
+.navbar-toggler {
+    padding: .20rem .50rem;
+    font-size: 1.25rem;
+    line-height: 1;
+    background-color: transparent;
+    border: 1px solid white;
+    }
+
+    .nav-link{
+        color: #000000 !important; /* font for tasks or whatever*/
+    }
+
+
+.wrapper{
+    width: 100%;
+    position: absolute;
+    height: 100%;
+    background-color: #000000;
+    clip-path: polygon(81% 0, 100% 0, 100% 50%, 100% 100%, 71% 100%);
+    transition: 1s all;
+}
+
+.navbar-brand{
+
+    color:#ffffff; /* link color*/
+/*font-family: 'Allerta Stencil', sans-serif;*/
+    margin-bottom: 4px;
+    font-size: 25px;
+}
+
+.navbar-red:hover .wrapper{
+    clip-path: polygon(81% 0, 100% 0, 100% 50%, 100% 100%, 65% 100%);
+}
+
+.navbar-brand:hover{
+    color:#ffffff;
+}
+
+.navbar-red{
+    background-color: rgb(255, 250, 250);
+    color: #000000;
+
+}
+
+.all-show{
+    z-index: 10;
+}
+
+
 body{
     background: linear-gradient(to left, #C20114, #054A91);
     color: #000000;
@@ -34,36 +99,7 @@ DO NOT ALTER*/
     max-height: 120px; /* Adjust the size of the logo */
     padding: 0px; /* Add padding around the logo if needed */
 }
-.navbar {
-    display: flex;
-    justify-content: center;
-    background-color: #ffffff;
-    padding-bottom: 10px; 
-}
 
-ul {
-    
-    list-style-type: none;
-    background-color: #ffffff;
-    margin: 0px;
-    padding: 0px;
-    display: flex;
-}
-  
-li {
-    margin-top: 10px;
-}
- 
-a {  
-    text-decoration: none;
-    background-color: #ffffff;
-    color: #000000;
-    font-weight: bold; 
-    font-size: 28px;
-    padding: 10px;
-    transition: background-color 0.3s;
-}
-  
 /* Hover effect for links */
 a:hover {
     background-color: #0C120C; /* Background color on hover */
