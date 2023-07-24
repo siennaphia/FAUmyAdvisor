@@ -1,3 +1,67 @@
+
+body{
+    background-color: #ffffff;
+}
+
+.navbar-nav>li>a{
+    text-transform: uppercase;
+    font-size: 16px;
+    margin-right:20px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+
+.navbar-toggler {
+    padding: .20rem .50rem;
+    font-size: 1.25rem;
+    line-height: 1;
+    background-color: transparent;
+    border: 1px solid white;
+    }
+
+    .nav-link{
+        color: #000000 !important; /* font for tasks or whatever*/
+    }
+
+
+.wrapper{
+    width: 100%;
+    position: absolute;
+    height: 100%;
+    background-color: #000000;
+    clip-path: polygon(81% 0, 100% 0, 100% 50%, 100% 100%, 71% 100%);
+    transition: 1s all;
+}
+
+.navbar-brand{
+
+    color:#ffffff; /* link color*/
+/*font-family: 'Allerta Stencil', sans-serif;*/
+    margin-bottom: 4px;
+    font-size: 27px;
+}
+
+.navbar-red:hover .wrapper{
+    clip-path: polygon(81% 0, 100% 0, 100% 50%, 100% 100%, 65% 100%);
+}
+
+.navbar-brand:hover{
+    color:#ffffff;
+}
+
+.navbar-red{
+    background-color: rgb(255, 250, 250);
+    color: #000000;
+
+}
+
+.all-show{
+    z-index: 10;
+}
+
+
+
 /*#################################################*/
 /*THIS CODE TAKES CARE OF THE NAVIGATION BAR 
   AND THE LOGOUT BUTTON.
@@ -11,34 +75,6 @@ DO NOT ALTER*/
     max-width: 120px; /* Adjust the size of the logo */
     max-height: 120px; /* Adjust the size of the logo */
     padding: 0px; /* Add padding around the logo if needed */
-  }
-  .navbar {
-    display: flex;
-    justify-content: center;
-    background-color: #FFFFFF;
-    padding-bottom: 10px; 
-  }
-  
-  ul {
-    
-    list-style-type: none;
-    background-color: #FFFFFF;
-    margin: 0px;
-    padding: 0px;
-    display: flex;
-  }
-  
-  li {
-    margin-top: 10px;
-  }
-  
-  a {  
-    text-decoration: none;
-    background-color: #FFFFFF;
-    color: #000000;
-    font-weight: bold; 
-    font-size: 23px;
-    padding: 10px;
   }
     
 
