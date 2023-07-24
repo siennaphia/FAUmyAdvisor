@@ -49,7 +49,6 @@ async function save(){
     const careerSelect = document.getElementById('careerSelect');
     const intendedCareer = careerSelect.value;
     const classesTaken = getCheckedClasses();
-   
 
     //pull userData data from firebase
     await database.ref('/users/' + currentUser.uid + '/skills').once('value', function(snapshot) {
@@ -91,9 +90,7 @@ async function save(){
     }
     
   
-    
-
-
+  
     
 
     // Update the userData data in Firebase under the userData's UID
