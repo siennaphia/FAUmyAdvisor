@@ -58,7 +58,6 @@ a {
     text-decoration: none;
     background-color: #ffffff;
     color: #000000;
-    font-family: monospace;
     font-weight: bold; 
     font-size: 28px;
     padding: 10px;
@@ -99,7 +98,7 @@ table {
       font-family: arial, sans-serif;
       border-collapse: collapse;
       width: 95%;
-      background-color: grey;
+      background-color: rgb(255, 255, 255);
       opacity: 90%;
     }
 
@@ -121,3 +120,4 @@ table {
     tr:nth-child(even) {
       background-color: #dddddd;
     }
+

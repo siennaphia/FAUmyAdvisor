@@ -13,16 +13,20 @@
     <!-- include the CSS file -->
     <link rel="icon" href="logo.ico" type="image/x-icon" />
     <link rel="stylesheet" type="text/css" href="careers.css" />
+    <!-- include the Chart.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- include the JavaScript file with custom logic -->
+    <script src="careers.js"></script>
   </head>
   <body>
     <div class="navbar">
       <nav>
         <img src="navbar_logo.png" alt="Logo" class="logo" />
         <ul>
-          <li><a href="#profile">Profile</a></li>
-          <li><a href="#registration">Registration</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#career">Career</a></li>
+          <li><a href="../Profile/userinfo.html">Profile</a></li>
+          <li><a href="../Class Registration/registration.html">Registration</a></li>
+          <li><a href="../Skill Display/skills.html">Skills</a></li>
+          <li><a href="../Career Simulator/career.html">Career</a></li>
         </ul>
       </nav>
       <a href="#" class="logout">Logout</a>
@@ -35,31 +39,40 @@
       <div id="flexContainer">
         <!-- Parent container for graph and classes -->
         <div id="chartContainer">
+          <br><br>
+          <br><br>
           <canvas id="skillsChart"></canvas>
+
+          <form id="careerForm">
+            <label for="careerSelect">Select your desired career:</label>
+            <div class="custom-select">
+              <!-- dropdown for selecting the desired career -->
+              <select
+                id="careerSelect"
+                onchange="updateWelcomeMessage()"
+                required
+              ></select>
+              <div class="select-arrow"></div>
+            </div>
+            
+            <button id="generateSkillsButton" type="submit">Generate Skills</button>
+          </form>
+
+          <br><br>
+          <br><br>
+
+
         </div>
         <div id="qualificationClasses">
           <!-- container for displaying the classes -->
           <!-- class and skills elements will be added dynamically here -->
         </div>
       </div>
-      <form id="careerForm">
-        <label for="careerSelect">Select your desired career:</label>
-        <div class="custom-select">
-          <!-- dropdown for selecting the desired career -->
-          <select
-            id="careerSelect"
-            onchange="updateWelcomeMessage()"
-            required
-          ></select>
-          <div class="select-arrow"></div>
-        </div>
-        <button id="generateSkillsButton" type="submit">Generate Skills</button>
-      </form>
-    </div>
-    <!-- include the Chart.js library -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
 
-    <!-- include the JavaScript file with custom logic -->
-    <script src="careers.js"></script>
+
+    </div>
   </body>
 </html>
+
+
