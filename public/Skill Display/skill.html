@@ -4,15 +4,19 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Skills</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="MyAdvisor.css">
+  
+  <!-- The only embedded css for this page deals with the table and the rest of the styling is pulled from Dylan's main css file -->
   <style>
     table {
       position: fixed;
       top: 60px;
-      left: 0px;
+      left: 50px;
       font-family: arial, sans-serif;
       border-collapse: collapse;
-      width: 100%;
+      width: 95%;
+      background-color: grey;
+      opacity: 90%;
     }
 
     td, th {
@@ -20,6 +24,11 @@
       text-align: left;
       padding: 5px;
       font-size: 14px;
+      
+    }
+    td {
+      font-size: 20px;
+ 
     }
     th {
       font-size: 20px;
@@ -31,24 +40,27 @@
   </style>
 </head>
 <body>
-  <div class="navbar">
-    <a href="index.html">Login</a>
-    <a href="#" id="logoutButton">Log Out</a>
-    <a href="userinfo.html">Update Info</a>
-    <a href="registration.html">Registration</a>
-    <a href="career.html">Career</a>
-    <a href="#skill.html">Skills</a>
+  <div class = "navbar">
+    <nav>
+      <img src="navbar_logo.png" alt="Logo" class="logo">
+        <ul>
+          <li><a href="#profile">Profile</a></li>
+          <li><a href="#registration">Registration</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#career">Career</a></li>
+        </ul>
+    </nav> 
+    <a href="#" class="logout">Logout</a>
   </div>
   <table id="skills">
     <tr>
       <th>Skill</th>
       <th>Proficiency Level</th>
       <th>Classes</th>
-    </tr>
+    </tr> <!-- table will fill in automatically with the users skills from the javascript -->
   </table>
-
   <!-- Add Firebase JS SDK -->
-  <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-app.js"></script>  m
+  <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-app.js"></script>  
   <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-firestore.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-database.js"></script>
