@@ -36,9 +36,9 @@
   <div class="semesterContainer">
     <h1>Semester:</h1>
     <div class="dropdownSemester">
-      <select class="dropdownSemester">
+      <select id="semesterDropdown">
         <option value="Fall">Fall</option>
-        <option value="Spring">Spring</option>
+        <option value="Spring">Spring</option>  
       </select>
     </div>
   </div>
@@ -47,19 +47,35 @@
     <div class="column" id = "choices">
       <h2>Class Choices</h2>
       <p>Classes offered for the selected semester</p>
-      <select id="dropdownReason">
-        <option value="core">Core</option>
-        <option value="elective">Elective</option>
-      </select>
-      <button id="generateClasses" onclick="classChecker()">Generate Classes</button></p>
+      <div class="dropdownReason">
+        <select id="reasonDropdown">
+          <option value="core">core</option>
+          <option value="elective">elective</option>
+        </select>
+        <button id="generateClasses" onclick="fetchUserDataAndPopulateChoices()">Generate Classes</button></p>
+      </div>
+      <div class="scrollable-list">
+        <ul id="classList">
+          <!-- List items will be populated dynamically through JavaScript -->
+        </ul>
+      </div>
     </div>
     <div class="column" id = "info">
       <h3>Class Info</h3>
       <p>Information about the selected class</p>
+      <div id="classInfoContainer">
+        <!-- Class information will be displayed here -->
+      </div>
+      <button id="addClass" onclick="addClassToSchedule()">Add Class to Schedule</button>
     </div>
     <div class="column" id = "schedule">
       <h3>Schedule</h3>
       <p>Schedule for the selected semester</p>
+      <div class="scrollable-list">
+        <ul id="scheduleList">
+          <!-- List items will be populated dynamically through JavaScript -->
+        </ul>
+      </div>
     </div>
   </div>
 </body>
