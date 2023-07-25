@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <!-- Meta Tags -->
+  <meta charset="utf-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <title>MyAdvisor</title>
   <!-- Update the version number as needed -->
   <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-app.js"></script>
@@ -13,32 +17,63 @@
 
   <!-- Add Firebase Database -->
   <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-database.js"></script>
-
   <script src="registration.js"></script>
+
   <link rel="icon" href="logo.ico" type="image/x-icon">
+
+  <!-- Stylesheet links including Bootstrap and Custom CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
   <link rel="stylesheet" href="registration.css">
 </head>
 
 <body>
-  <div class = "navbar">
-    <nav>
-      <img src="navbar_logo.png" alt="Logo" class="logo">
-      <ul>
-        <li><a href="../Profile/userinfo.html">Profile</a></li>
-        <li><a href="../Class Registration/registration.html">Registration</a></li>
-        <li><a href="../Skill Display/skills.html">Skills</a></li>
-        <li><a href="../Career Simulator/career.html">Career</a></li>
-      </ul>
-    </nav> 
-    <a href="#" class="logout">Logout</a>
-  </div>
+  <!-- Navbar Section -->
+  <nav class="navbar navbar-expand-lg navbar-red navbar-dark">
+    <div class="wrapper">
+    </div>  
+    <div class="container-fluid all-show">
+        <!-- Navbar toggle button for mobile display --> 
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" 
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- Navbar contents -->
+            <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+                <img src="navbar_logo.png" alt="Logo" class="logo"> 
+                <!-- Various Navbar Items -->
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">About us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="userinfo.html">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../Class Registration/registration.html">Registration</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../Skill Display/skills.html">Skills</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../Career Simulator/career.html">Career</a>
+                </li>
+            </ul>
+
+            <div class="d-flex flex-column sim">
+                <span> <font color = "white">0 Skills Aquired</font></span>    
+            </div>
+        </div>
+    </div>
+  </nav>
 
   <div class="semesterContainer">
     <h1>Semester:</h1>
     <div class="dropdownSemester">
-      <select class="dropdownSemester">
+      <select id="semesterDropdown">
         <option value="Fall">Fall</option>
-        <option value="Spring">Spring</option>
+        <option value="Spring">Spring</option>  
       </select>
     </div>
   </div>
@@ -47,19 +82,35 @@
     <div class="column" id = "choices">
       <h2>Class Choices</h2>
       <p>Classes offered for the selected semester</p>
-      <select id="dropdownReason">
-        <option value="core">Core</option>
-        <option value="elective">Elective</option>
-      </select>
-      <button id="generateClasses" onclick="classChecker()">Generate Classes</button></p>
+      <div class="dropdownReason">
+        <select id="reasonDropdown">
+          <option value="core">core</option>
+          <option value="elective">elective</option>
+        </select>
+        <button id="generateClasses" onclick="fetchUserDataAndPopulateChoices()">Generate Classes</button></p>
+      </div>
+      <div class="scrollable-list">
+        <ul id="classList">
+          <!-- List items will be populated dynamically through JavaScript -->
+        </ul>
+      </div>
     </div>
     <div class="column" id = "info">
       <h3>Class Info</h3>
       <p>Information about the selected class</p>
+      <div id="classInfoContainer">
+        <!-- Class information will be displayed here -->
+      </div>
+      <button id="addClass">Add Class to Schedule</button>
     </div>
     <div class="column" id = "schedule">
       <h3>Schedule</h3>
-      <p>Schedule for the selected semester</p>
+      <p>Schedule for the selected semester.</p>
+      <div class="semesterSchedule">
+        <ul id="scheduleList">
+          <!-- List items will be populated dynamically through JavaScript -->
+        </ul>
+      </div>
     </div>
   </div>
 </body>
