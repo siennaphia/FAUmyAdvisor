@@ -20,7 +20,8 @@ let coreNext = {};
 let electiveNext = {};
 let classesTaken = {};
 let nextSemesterClass = {};
-let semesterSchedule = {};
+let scheduleFall = {};
+let scheduleSpring = {};
 
 async function fetchUserDataAndPopulateChoices() {
     try {
@@ -171,7 +172,7 @@ function populateClassChoices(classesCore, classesElective) {
     // Get a reference to the <select> element
     const semesterDropdown = document.getElementById("semesterDropdown");
     const selectedSemester = semesterDropdown.value;
-    console.log("Selected semester:", selectedSemester);
+    console.log("Selected schedule:", selectedSemester);
 
     const reasonDropdown = document.getElementById("reasonDropdown");
     const selectedReason = reasonDropdown.value;
@@ -276,10 +277,49 @@ function populateClassInfo(classKey){
         classInfoContainer.appendChild(classInfoHeading);
         classInfoContainer.appendChild(classInfoList);
     }
+    const addButton = document.getElementById("addClass");
+    addButton.addEventListener("click", () => onScheduleClick(classKey));
 }
 
+function semesterSchedule(classKey){
+    const semesterDropdown = document.getElementById("semesterDropdown");
+    const selectedSemester = semesterDropdown.value;
+
+    if(selectedSemester === "Fall"){
+        scheduleFall[classKey] = true;
+        const scheduleListElement = document.getElementById("scheduleList");
+        // Clear any previous content
+        scheduleListElement.innerHTML = "";
+        for(const classKey in scheduleFall){
+            if(scheduleFall.hasOwnProperty(classKey)){
+                const listItem = document.createElement("li");
+                listItem.textContent = classKey;
+                scheduleListElement.appendChild(listItem);
+            }
+        }
+    }
+    else if(selectedSemester === "Spring"){
+        scheduleSpring[classKey] = true;
+        const scheduleListElement = document.getElementById("scheduleList");
+        // Clear any previous content
+        scheduleListElement.innerHTML = "";
+        for(const classKey in scheduleSpring){
+            if(scheduleSpring.hasOwnProperty(classKey)){
+                const listItem = document.createElement("li");
+                listItem.textContent = classKey;
+                scheduleListElement.appendChild(listItem);
+            }
+        }
+    }
+
+}
 
 // Call this function when a class is clicked in the list
 function onClassClick(classKey) {
     populateClassInfo(classKey);
+}
+
+// Call this function when the button to add to schedule is clicked
+function onScheduleClick(classKey){
+    semesterSchedule(classKey);
 }

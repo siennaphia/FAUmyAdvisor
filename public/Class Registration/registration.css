@@ -250,3 +250,10 @@ h2,h3,h4{
     color: #ffffff; /* Text color on hover */
     cursor: pointer;
 }
+
+.semesterSchedule ul{
+    list-style-type: none; /* Remove the default bullet point */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    display: block; /* Change the display to block to make the list items stack vertically */
+}
