@@ -29,51 +29,6 @@ button, .button {
   AND THE LOGOUT BUTTON.
 DO NOT ALTER*/
 /*#################################################*/
-/* Center the navigation bar */
-.logo {
-  position: absolute;
-  top: 5px; /* Adjust the top position as needed */
-  left: 0px; /* Adjust the left position as needed */
-  max-width: 120px; /* Adjust the size of the logo */
-  max-height: 120px; /* Adjust the size of the logo */
-  padding: 0px; /* Add padding around the logo if needed */
-}
-.navbar {
-  display: flex;
-  justify-content: center;
-  background-color: #ffffff;
-  padding-bottom: 10px; 
-}
-
-ul {
-  
-  list-style-type: none;
-  background-color: #ffffff;
-  margin: 0px;
-  padding: 0px;
-  display: flex;
-}
-
-li {
-  margin-top: 10px;
-}
-
-a {  
-  text-decoration: none;
-  background-color: #ffffff;
-  color: #000000;
-  font-weight: bold; 
-  font-size: 23px;
-  padding: 10px;
-  transition: background-color 0.3s;
-}
-
-/* Hover effect for links */
-a:hover {
-  background-color: #0C120C; /* Background color on hover */
-  color: #ECEBF3; /* Text color on hover */
-}
-
 .logout {
   position: absolute;
   top: 0px;
@@ -81,7 +36,7 @@ a:hover {
   background-color: #ffffff;
   color: #000000; 
   font-weight: bold;
-  font-size: 23px;
+  font-size: 28px;
 }
 
 .logout:hover {

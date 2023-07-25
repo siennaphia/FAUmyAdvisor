@@ -20,6 +20,33 @@ database.ref('/careers').once('value', function (snapshot) {
   populateCareerSelect(careers);
 });
 
+// Function to display the number of skills a user possesses
+function displayUserSkillCount(userSkills) {
+  var skillCountElement = document.getElementById("userSkillCount");
+  var numSkills = Object.keys(userSkills).length;
+
+  skillCountElement.textContent = numSkills + " Skills Acquired";
+}
+
+// fetch the skills of the specified user from Firebase
+database.ref("users/UID1/skills").once("value", function (userSnapshot) {
+  var userSkills = userSnapshot.val();
+
+  if (userSkills) {
+    // clone the userSkills object to avoid modification
+    var userSkillsClone = Object.assign({}, userSkills);
+
+    // display the number of user skills
+    displayUserSkillCount(userSkillsClone);
+
+    // ... (rest of the code)
+  } else {
+    // clear the chart if user skills are not found
+    clearChart();
+    console.log("User skills not found.");
+  }
+});
+
 // fetch current user's name from Firebase and update the welcome message
 database.ref('/users/UID1').once('value', function (snapshot) {
   var currentUser = snapshot.val();

@@ -1,0 +1,47 @@
+/* Add this CSS to the navbar.css file */
+body {
+  background-color: #ffffff;
+}
+
+.navbar-red {
+  background-color: rgb(255, 250, 250);
+  color: #000000;
+  padding: 0.5rem 1rem; /* Adjust padding as needed */
+}
+
+.navbar-toggler {
+  padding: 0.3rem 0.5rem; /* Adjust padding as needed */
+  font-size: 1.25rem;
+  line-height: 1;
+  background-color: transparent;
+  border: 1px solid white;
+}
+
+.navbar-brand {
+  color: #ffffff; /* link color */
+  /*font-family: 'Allerta Stencil', sans-serif;*/
+  margin-bottom: 4px;
+  font-size: 27px;
+}
+
+/* Add custom styles for the dropdown menu */
+.navbar-red .navbar-nav .nav-item .nav-link {
+  color: #000000 !important;
+  font-size: 16px;
+  margin-right: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* Reduce the size of the logo image as needed */
+.navbar-red .logo {
+  height: 30px;
+  /* Add more styles if needed */
+}
+
+/* Style the welcome message and user skill count */
+.navbar-red .sim {
+  color: white;
+  font-size: 14px;
+  margin-left: 10px;
+}
