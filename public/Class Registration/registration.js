@@ -25,33 +25,44 @@ let scheduleSpring = {};
 
 async function fetchUserDataAndPopulateChoices() {
     try {
-        // Fetch core classes from Firebase
-        const coreSnapshot = database.ref('/classes/core').once('value');
-        // Fetch elective classes from Firebase
-        const electiveSnapshot = database.ref('/classes/elective').once('value');
-        // Fetch classes taken by the current user from Firebase
-        const userClassesSnapshot = database.ref('/users/UID1/classesTaken').once('value');
+        // Check the user's authentication state
+        firebase.auth().onAuthStateChanged(async function(user) {
+          if (user) {
+            // User is signed in, fetch the classes taken by the current user
+            const currentUserUID = user.uid;
     
-        // Wait for all the async tasks to complete using Promise.all()
-        const [coreSnapshotData, electiveSnapshotData, userClassesSnapshotData] = await Promise.all([
-          coreSnapshot,
-          electiveSnapshot,
-          userClassesSnapshot,
-        ]);
+            // Fetch core classes from Firebase
+            const coreSnapshot = database.ref('/classes/core').once('value');
+            // Fetch elective classes from Firebase
+            const electiveSnapshot = database.ref('/classes/elective').once('value');
+            // Fetch classes taken by the current user from Firebase
+            const userClassesSnapshot = database.ref('/users/' + currentUserUID + '/classesTaken').once('value');
     
-        core = coreSnapshotData.val();
-        elective = electiveSnapshotData.val();
-        userClasses = userClassesSnapshotData.val();
+            // Wait for all the async tasks to complete using Promise.all()
+            const [coreSnapshotData, electiveSnapshotData, userClassesSnapshotData] = await Promise.all([
+              coreSnapshot,
+              electiveSnapshot,
+              userClassesSnapshot,
+            ]);
     
-        const userClassKey = Object.keys(userClasses);
+            core = coreSnapshotData.val();
+            elective = electiveSnapshotData.val();
+            userClasses = userClassesSnapshotData.val();
     
-        for (let i = 0; i < userClassKey.length; i++) {
-          await checkCoreClasses(userClassKey[i]);
-          await checkElectiveClasses(userClassKey[i]);
-        }
+            const userClassKey = Object.keys(userClasses);
     
-        // Call populateClassChoices inside this function
-        populateClassChoices(coreNext, electiveNext);
+            for (let i = 0; i < userClassKey.length; i++) {
+              await checkCoreClasses(userClassKey[i]);
+              await checkElectiveClasses(userClassKey[i]);
+            }
+    
+            // Call populateClassChoices inside this function
+            populateClassChoices(coreNext, electiveNext);
+          } else {
+            // No user is signed in.
+            console.log("No user logged in.");
+          }
+        });
       } catch (error) {
         console.error('Error fetching data:', error);
       }
