@@ -136,6 +136,15 @@ DO NOT ALTER*/
   margin-bottom: 10px; /* Add some margin below the heading */
 }
 
+#qualificationCongrats {
+  font-size: 24px;
+  font-weight: bold;
+  color: #000000;
+  padding-top: 100px;
+  padding-right: 20px;
+  text-align: center;
+}
+
 #qualificationSkills {
   background-color: #ffffff;
   font-size: 15px;
