@@ -402,4 +402,3 @@ document.getElementById('generateClassesButton').addEventListener('click', funct
   updateQualificationClasses();
 });
 
-
