@@ -1,212 +1,48 @@
-
+/*#################################################*/
+/*THIS CODE MAKES A STYLE TEMPLATE FOR THE PAGE
+DO NOT ALTER*/
+/*#################################################*/
 body{
-  background-color: #ffffff;
-}
-
-.navbar-nav>li>a{
-  text-transform: uppercase;
-  font-size: 16px;
-  margin-right:20px;
-  font-weight: bold;
-  color: #ffffff;
-}
-
-
-.navbar-toggler {
-  padding: .20rem .50rem;
-  font-size: 1.25rem;
-  line-height: 1;
-  background-color: transparent;
-  border: 1px solid white;
-  }
-
-  .nav-link{
-      color: #000000 !important; /* font for tasks or whatever*/
-  }
-
-
-.wrapper{
-  width: 100%;
-  position: absolute;
-  height: 100%;
-  background-color: #000000;
-  clip-path: polygon(81% 0, 100% 0, 100% 50%, 100% 100%, 71% 100%);
-  transition: 1s all;
-}
-
-.navbar-brand{
-
-  color:#ffffff; /* link color*/
-/*font-family: 'Allerta Stencil', sans-serif;*/
-  margin-bottom: 4px;
-  font-size: 27px;
-}
-
-.navbar-red:hover .wrapper{
-  clip-path: polygon(81% 0, 100% 0, 100% 50%, 100% 100%, 65% 100%);
-}
-
-.navbar-brand:hover{
-  color:#ffffff;
-}
-
-.navbar-red{
-  background-color: rgb(255, 250, 250);
+  background: linear-gradient(to left, #C20114, #054A91);
   color: #000000;
-
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-.all-show{
-  z-index: 10;
+h1, h2, h3, h4, h5, h6 {
+  color: #ECEBF3; /* Heading text color */
 }
 
-
+button, .button {
+  background-color: #ffffff; /* Button background color */
+  color: #000000; /* Button text color */
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  transition: background-color 0.3s;
+  cursor: pointer;
+}
 
 /*#################################################*/
 /*THIS CODE TAKES CARE OF THE NAVIGATION BAR 
-AND THE LOGOUT BUTTON.
+  AND THE LOGOUT BUTTON.
 DO NOT ALTER*/
 /*#################################################*/
-/* Center the navigation bar */
-.logo {
+.logout {
   position: absolute;
-  top: 5px; /* Adjust the top position as needed */
-  left: 0px; /* Adjust the left position as needed */
-  max-width: 120px; /* Adjust the size of the logo */
-  max-height: 120px; /* Adjust the size of the logo */
-  padding: 0px; /* Add padding around the logo if needed */
-}
-  
-
-
-body {
-  color: #000;
-  overflow-x: hidden;
-  height: 100%;
-  background-image: linear-gradient(to right,  #C20114, #054A91);
-  background-repeat: no-repeat;
+  top: 0px;
+  right: 0px;
+  background-color: #ffffff;
+  color: #000000; 
+  font-weight: bold;
+  font-size: 28px;
 }
 
-input, textarea {
-  background-color: #F3E5F5;
-  border-radius: 50px !important;
-  padding: 12px 15px 12px 15px !important;
-  width: 100%;
-  box-sizing: border-box;
-  border: none !important;
-  border: 1px solid #F3E5F5 !important;
-  font-size: 16px !important;
-  color: #000 !important;
-  font-weight: 400;
-}
-
-input:focus, textarea:focus {
-  -moz-box-shadow: none !important;
-  -webkit-box-shadow: none !important;
-  box-shadow: none !important;
-  border: 1px solid #054A91 !important;
-  outline-width: 0;
-  font-weight: 400;
-}
-
-button:focus {
-  -moz-box-shadow: none !important;
-  -webkit-box-shadow: none !important;
-  box-shadow: none !important;
-  outline-width: 0;
-}
-
-.card {
-  border-radius: 0;
-  border: none;
-}
-
-.card1 {
-  width: 50%;
-  padding: 40px 30px 10px 30px;
-}
-
-.card2 {
-  width: 50%;
-  background-image: linear-gradient(to left, #C20114, #054A91);
-}
-
-#logo {
-  width: 70px;
-  height: 60px;
-}
-
-.heading {
-  margin-bottom: 60px !important;
-}
-
-::placeholder {
-  color: #000 !important;
-  opacity: 1;
-}
-
-:-ms-input-placeholder {
-  color: #000 !important;
-}
-
-::-ms-input-placeholder {
-  color: #000 !important;
-}
-
-.form-control-label {
-  font-size: 12px;
-  margin-left: 15px;
-}
-
-.msg-info {
-  padding-left: 15px;
-  margin-bottom: 30px;
-}
-
-.btn-color {
-  border-radius: 50px;
-  color: #fff;
-  background-image: linear-gradient(to left, #C20114, #054A91);
-  padding: 15px;
+.logout:hover {
+  background-color: #0C120C; /* Background color on hover */
+  color: #ECEBF3; /* Text color on hover */
   cursor: pointer;
-  border: none !important;
-  margin-top: 40px;
-}
-
-.btn-color:hover {
-  color: #fff;
-  background-image: linear-gradient(to left, #C20114, #054A91);
-}
-
-.btn-white {
-  border-radius: 50px;
-  color: #054A91;
-  background-color: #fff;
-  padding: 8px 40px;
-  cursor: pointer;
-  border: 2px solid #054A91 !important;
-}
-
-.btn-white:hover {
-  color: #fff;
-  background-image: linear-gradient(to right, #C20114, #054A91);
-}
-
-a {
-  color: #000;
-}
-
-a:hover {
-  color: #000;
-}
-
-.bottom {
-  width: 100%;
-  margin-top: 50px !important;
-}
-
-.sm-text {
-  font-size: 15px;
 }
 
 #welcomeMessage {
@@ -216,7 +52,6 @@ a:hover {
   color: #FFFFFF;
   margin: 20px;
 }
-
 
 
 #mainContainer {
@@ -301,6 +136,15 @@ a:hover {
   margin-bottom: 10px; /* Add some margin below the heading */
 }
 
+#qualificationCongrats {
+  font-size: 24px;
+  font-weight: bold;
+  color: #000000;
+  padding-top: 100px;
+  padding-right: 20px;
+  text-align: center;
+}
+
 #qualificationSkills {
   background-color: #ffffff;
   font-size: 15px;
@@ -317,8 +161,6 @@ a:hover {
   flex-direction: row;
   align-items: center;
 }
-
-
 
 #careerForm {
   max-width: 800px;
@@ -372,36 +214,20 @@ a:hover {
   pointer-events: none;
 }
 
-/*
-.btn-color {
-  border-radius: 50px;
-  color: #fff;
-  background-image: linear-gradient(to left, #C20114, #054A91);
-  padding: 15px;
-  cursor: pointer;
-  border: none !important;
-  margin-top: 40px;
+#generateSkillsButton {
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border: 1px solid #054A91;
+  outline-width: 0;
+  font-weight: 400;
+  color: #054A91; /* Set the text color to blue */
 }
 
-.btn-color:hover {
-  color: #fff;
-  background-image: linear-gradient(to left, #C20114, #054A91);
+#generateSkillsButton:hover {
+  background-color: #054A91; /* Set the background color to blue on hover */
+  color: #fff; /* Set the text color to white on hover */
 }
-
-.btn-white {
-  border-radius: 50px;
-  color: #054A91;
-  background-color: #fff;
-  padding: 8px 40px;
-  cursor: pointer;
-  border: 2px solid #054A91 !important;
-}
-
-.btn-white:hover {
-  color: #fff;
-  background-image: linear-gradient(to right, #C20114, #054A91);
-}
-*/
 
 #skillsChart {
   width: 100%;
