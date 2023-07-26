@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Setting the character encoding and viewport for responsiveness -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Setting the page title -->
+    <title>Login</title>
+
+    <!-- Adding the Firebase JS SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-app.js"></script>
+
+    <!-- Adding Firestore products -->
+    <script src="https://hfwww.gstatic.com/firebasejs/8.0.1/firebase-firestore.js"></script>
+
+    <!-- Adding Firebase Authentication -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-auth.js"></script>
+
+    <!-- Adding Firebase Database -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-database.js"></script>
+
+    <!-- Attaching external JavaScript -->
+    <script src="Login Page/index.js"></script>
+
+    <!-- Importing Bootstrap CSS stylesheet and custom CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="Login Page/login.css">
+
+</head>
+
+<body>
+    <!-- Building the navigation bar -->
+    <nav class="navbar navbar-expand-lg navbar-red navbar-dark">
+        <!-- Mobile nav button and logo -->
+        <div class="container-fluid all-show">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <img src="Login Page/navbar_logo.png" alt="Logo" class="logo"> 
+
+    <!-- Building Navigation Menu -->
+    <!-- Nav items to linked pages with 'Profile', 'Skills' and 'Career' as placeholders for yet to be developed pages -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link active" href="#">About us</a></li>
+                <li class="nav-item"><a class="nav-link" href="oops.html">Profile</a></li>
+                <li class="nav-item"><a class="nav-link" href="oops.html">Registration</a></li>
+                <li class="nav-item"><a class="nav-link" href="oops.html">Skills</a></li>
+                <li class="nav-item"><a class="nav-link" href="oops.html">Career</a></li>
+        </ul>
+        <!-- Place to display user skill stats -->
+        <div class="d-flex flex-column sim">
+            <span><font color = "white">0 Skills Aquired</font></span>    
+        </div>
+    </div>
+    </div>
+    </nav>
+
+    <!-- Building the login form -->
+    <div class="container px-4 py-5 mx-auto">
+        <div class="card card0">
+            <div class="d-flex flex-lg-row flex-column-reverse">
+                <div class="card card1">
+                    <div class="row justify-content-center my-auto">
+                        <!-- Form with fields for 'username' and 'password' -->
+                        <div class="col-md-8 col-10 my-5">
+                            <h3 class="mb-5 text-center heading">Welcome to MyAdvisor</h3>
+                            <form id="loginForm">
+                            <div class="form-group">
+                                <label class="form-control-label text-muted">Username</label>
+                                <input type="email" id="emailInput" name="email" placeholder="Email" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-control-label text-muted">Password</label>
+                                <input type="password" id="passwordInput" name="psw" placeholder="Password" class="form-control" required>
+                            </div>
+
+                            <div class="row justify-content-center my-3 px-3">
+                                <button class="btn-block btn-color" type="submit" onclick="login()">Login</button>
+                            </div>
+                            <br>
+                            <p href="#" class="sm-text mx-auto mb-3">Don't have an account?<button class="btn btn-white ml-2" type="button" onclick="registerUser()">Register</button></p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right side of the card with the promotional message -->
+                <div class="card card2">
+                    <div class="my-auto mx-md-5 px-md-5 right">
+                        <h3 class="text-white">We are more than an Audit</h3>
+                        <small class="text-white"> myAdvisor represents not just a tool for better course selection, but a comprehensive platform for fostering educated career decisions from the very beginning of your college career</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
