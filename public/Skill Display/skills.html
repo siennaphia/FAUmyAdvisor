@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-
     <!-- Setting the character encoding and responsiveness of the document -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Defining the title -->
     <title>Skills</title>
@@ -16,21 +15,31 @@
     <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-database.js"></script>
 
     <!-- Linking to required CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="skills.css">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="skills.css" />
 
     <!-- Linking script file -->
     <script src="skills.js"></script>
   </head>
-  
+
   <body>
     <!-- Navigation bar begins -->
     <nav class="navbar navbar-expand-lg navbar-red navbar-dark">
-      <div class="wrapper"></div>  
+      <div class="wrapper"></div>
       <div class="container-fluid all-show">
-
         <!-- Navbar toggle button for smaller screens -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
           <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -38,19 +47,35 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
             <!-- Displaying logo -->
-            <img src="navbar_logo.png" alt="Logo" class="logo"> 
+            <img src="navbar_logo.png" alt="Logo" class="logo" />
 
             <!-- Navbar link items -->
-            <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">About us</a></li>
-            <li class="nav-item"><a class="nav-link" href="../Profile/userinfo.html">Profile</a></li>
-            <li class="nav-item"><a class="nav-link" href="../Class Registration/registration.html">Registration</a></li>
-            <li class="nav-item"><a class="nav-link" href="skills.html">Skills</a></li>
-            <li class="nav-item"><a class="nav-link" href="../Career Simulator/career.html">Career</a></li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#"
+                >About us</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../Profile/userinfo.html">Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../Class Registration/registration.html"
+                >Registration</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="skills.html">Skills</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../Career Simulator/career.html"
+                >Career</a
+              >
+            </li>
           </ul>
 
           <!-- Skill count display -->
           <div class="d-flex flex-column sim">
-            <span id="userSkillCount" style="color: white;"></span>    
+            <span id="userSkillCount" style="color: white"></span>
           </div>
         </div>
       </div>
