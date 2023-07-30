@@ -27,8 +27,6 @@ database.ref('/classes').once('value', function(snapshot) {
   createCheckboxes();
 });
 
-
-
 // Populate the career select dropdown with career options
 function populateCareerSelect() {
   const careerSelect = document.getElementById('careerSelect');
@@ -149,7 +147,6 @@ function skillChecker(classTaken, previousUserClassTaken){
   return skills 
 }
 
-
 // Create checkboxes for the classes and display them in a table
 function createCheckboxes() {
   const classesContainer = document.getElementById('classesContainer');
@@ -235,7 +232,11 @@ function createCheckboxes() {
 // Wait for the DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
   // Add click event listener to the "Log Out" button
-  document.getElementById("logoutButton").addEventListener("click", logoutUser);
+    document.body.addEventListener('click', function(event) {
+      if (event.target.id === 'logoutButton') {
+        logoutUser();
+      }
+    });
 
   // Fetch the current userData from Firebase
   firebase.auth().onAuthStateChanged(function(userData) {
@@ -273,7 +274,8 @@ document.addEventListener('DOMContentLoaded', function() {
 function logoutUser() {
   firebase.auth().signOut().then(() => {
     // Sign-out successful.
-    window.location.href = "index.html"; // Redirect to the login page after logout
+    console.log('User Logged Out!');
+    window.location.href = "../index.html"; // Redirect to the login page after logout
   }).catch((error) => {
     // An error happened.
     console.log(error);

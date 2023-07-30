@@ -93,4 +93,17 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     }
  });
+ 
+ // Log out the userData
+function logoutUser() {
+  firebase.auth().signOut().then(() => {
+    // Sign-out successful.
+    console.log('User Logged Out!');
+    window.location.href = "../index.html"; // Redirect to the login page after logout
+  }).catch((error) => {
+    // An error happened.
+    console.log(error);
+  });
+}
+
 });
