@@ -1,4 +1,3 @@
-
 // configure Firebase
 var firebaseConfig = {
   apiKey: "AIzaSyB8MQgtQq2_AbIZEHMJrh3VkJDuvTTy5ss",
@@ -16,41 +15,30 @@ firebase.initializeApp(firebaseConfig);
 var database = firebase.database();
 
 var userSkills = [];
-var userClasses  = [];
+var userClasses = [];
 var userID;
+
 
 firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
     // User is logged in
-    // You can now access the currently logged-in user's information  
     userID = user.uid;
-     
-    // Map to the currently logged-in user here
     console.log("User is logged in:", userID, userSkills, userClasses);
-    
+
     // Fetch user skills from Firebase
     database.ref('users/' + userID + '/skills').once('value')
       .then(function(snapshot) {
-        userSkills = snapshot.val();
-
-        // Check if userSkills is not null or undefined before calling the function
-        if (userSkills) {
-          displayUserSkillCount(userSkills);
-        }
+        userSkills = snapshot.val() ? Object.keys(snapshot.val()) : [];
+        displayUserSkillCount(userSkills);
       })
       .catch(function(error) {
         console.error("Error fetching user skills:", error);
       });
-    
+
     // Fetch user classes from Firebase
     database.ref('users/' + userID + '/classesTaken').once('value')
       .then(function(snapshot) {
-        userClasses = snapshot.val();
-
-        // Check if userClasses is not null or undefined before calling the function
-        if (userClasses) {
-          // You can handle userClasses here, as per your requirement
-        }
+        userClasses = snapshot.val() ? Object.keys(snapshot.val()) : [];
       })
       .catch(function(error) {
         console.error("Error fetching user classes:", error);
@@ -59,8 +47,27 @@ firebase.auth().onAuthStateChanged(function (user) {
     // User is logged out
     // Handle the case when no user is logged in
     console.log("User is logged out.");
+    // Clear the skills chart and any other elements as necessary
+    clearChart();
+    var skillCountElement = document.getElementById("userSkillCount");
+    skillCountElement.textContent = "User not logged in";
+    userClasses = []; // Set userClasses to an empty array when the user is logged out
   }
 });
+
+
+async function getUserTakenClasses() {
+  try {
+    // Use the userID variable to fetch the user's classes
+    var userClassesSnapshot = await database.ref('/users/' + userID + '/classesTaken').once('value');
+    var userClasses = userClassesSnapshot.val();
+    return userClasses ? Object.keys(userClasses) : [];
+  } catch (error) {
+    console.error("Error fetching user classes:", error);
+    return [];
+  }
+}
+
 
 // Fetch careers from Firebase
 database.ref('/careers').once('value', function (snapshot) {
@@ -68,26 +75,14 @@ database.ref('/careers').once('value', function (snapshot) {
   populateCareerSelect(careers);
 });
 
-
-  /*async function getUserTakenClasses() {
-    try {
-      var userClassesSnapshot = await database.ref('/users/UID1/classesTaken').once('value');
-      var userClasses = userClassesSnapshot.val();
-      return userClasses ? Object.keys(userClasses) : [];
-    } catch (error) {
-      console.error("Error fetching user classes:", error);
-      return [];
-    }
-  }*/
-  
-
 // Function to display the number of skills a user possesses
 function displayUserSkillCount(userSkills) {
   var skillCountElement = document.getElementById("userSkillCount");
-  var numSkills = Object.keys(userSkills).length;
+  var numSkills = userSkills.length;
 
   skillCountElement.textContent = numSkills + " Skills Acquired";
 }
+
 // Event listener for the "Generate Skills" button
 document.getElementById('generateSkillsButton').addEventListener('click', function (event) {
   event.preventDefault(); // Prevent form submission from refreshing the page
@@ -130,25 +125,12 @@ async function generateSkills() {
         updateQualificationStatus(true);
         createDoubleBarGraph(requiredSkills, userSkills);
       } else {
-    
-
         var requiredClasses = await findClassesTeachingSkills(requiredSkills, userClasses);
-        var missingClasses = [];
-
-        for (var i = 0; i < requiredClasses.length; i++) {
-          var className = requiredClasses[i];
-          var isClassTaken = await checkClassAlreadyTaken(className);
-
-          if (!isClassTaken) {
-            missingClasses.push(className);
-          }
-        }
 
         console.log('Required Classes:', requiredClasses);
-        console.log('Missing Classes:', missingClasses);
+        console.log('Missing Classes:', requiredClasses.length === 0 ? "None" : requiredClasses);
 
         updateQualificationStatus(false);
-        displayMissingClasses(missingClasses);
         createDoubleBarGraph(requiredSkills, userSkills);
       }
     } else {
@@ -161,7 +143,7 @@ async function generateSkills() {
   }
 }
 
-// create a double bar graph comparing required skills with user skills
+
 function createDoubleBarGraph(requiredSkills, userSkills) {
   var canvas = document.getElementById('skillsChart');
   var ctx = canvas.getContext('2d');
@@ -171,18 +153,12 @@ function createDoubleBarGraph(requiredSkills, userSkills) {
   var userSkillNames = Object.keys(userSkills);
   var userSkillLevels = Object.values(userSkills);
 
-  test = userSkills;
-  
-  console.log("User Skills: ", test);
+  var userSkillsFiltered = {};
 
-  console.log("Required Skills: ", requiredSkills);
-
-  //remove any key in test that is not in requiredSkills
-  for (var skill in test) {
-    if (test.hasOwnProperty(skill)) {
-      if (!requiredSkills.hasOwnProperty(skill)) {
-        delete test[skill];
-      }
+  // Remove any key in userSkills that is not in requiredSkills
+  for (var skill in userSkills) {
+    if (userSkills.hasOwnProperty(skill) && requiredSkills.hasOwnProperty(skill)) {
+      userSkillsFiltered[skill] = userSkills[skill];
     }
   }
 
@@ -206,7 +182,7 @@ function createDoubleBarGraph(requiredSkills, userSkills) {
         },
         {
           label: 'User Skill Level',
-          data: test ,
+          data: Object.values(userSkillsFiltered),
           backgroundColor: 'rgba(194, 1, 20, 0.2)',
           borderColor: 'rgba(194, 1, 20, 1)',
           borderWidth: 1
@@ -224,11 +200,31 @@ function createDoubleBarGraph(requiredSkills, userSkills) {
   });
 }
 
-// Clear the skill chart
+
 function clearChart() {
-  if (window.myChart) {
-    // Destroy chart if it exists
-    window.myChart.destroy();
+  var canvas = document.getElementById('skillsChart');
+  var ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+function updateQualificationStatus(qualifies) {
+  var qualificationStatus = document.getElementById('qualificationStatus');
+
+  if (qualifies) {
+    qualificationStatus.textContent = 'You qualify for this career!';
+  } else {
+    qualificationStatus.textContent = 'You do not qualify for this career.';
+  }
+}
+
+function displayMissingClasses(missingClasses) {
+  var missingClassesList = document.getElementById('missingClassesList');
+  missingClassesList.innerHTML = '';
+
+  for (var i = 0; i < missingClasses.length; i++) {
+    var li = document.createElement('li');
+    li.textContent = missingClasses[i];
+    missingClassesList.appendChild(li);
   }
 }
 
@@ -236,7 +232,7 @@ function userQualifies(requiredSkills, userSkills) {
   var qualifiedSkills = 0;
 
   for (var skill in requiredSkills) {
-    if (requiredSkills.hasOwnProperty(skill) && userSkills.hasOwnProperty(skill)) {
+    if (requiredSkills.hasOwnProperty(skill) && userSkills.includes(skill)) {
       var requiredSkillLevel = requiredSkills[skill];
       var userSkillLevel = userSkills[skill];
 
@@ -250,70 +246,18 @@ function userQualifies(requiredSkills, userSkills) {
   return qualifiedSkills >= requiredSkillCount;
 }
 
-async function generateSkillsQualificationStatus(requiredSkills, userSkills) {
-  var requiredClasses = await findClassesTeachingSkills(requiredSkills, userSkills);
-  var missingClasses = [];
-
-  for (var i = 0; i < requiredClasses.length; i++) {
-    var className = requiredClasses[i];
-    var isClassTaken = await checkClassAlreadyTaken(className);
-
-    if (!isClassTaken) {
-
-      missingClasses.push(className);
-    }
-  }
-
-  console.log('Required Classes:', requiredClasses);
-  console.log('Missing Classes:', missingClasses);
-
-  return missingClasses.length === 0;
-}
-
-
-// Function to check if the class teaches at least one required skill
-function hasRequiredSkill(skillsTaught, requiredSkills) {
-  for (var skill in requiredSkills) {
-    if (requiredSkills.hasOwnProperty(skill) && skillsTaught.hasOwnProperty(skill)) {
-      console.log("Skill:", skill);
-      return true; // Class teaches at least one required skill
-    }
-  }
-
-  return false; // Class doesn't teach any of the required skills
-}
-
-async function findClassesTeachingSkills(requiredSkills) {
+async function findClassesTeachingSkills(requiredSkills, userClasses) {
   var requiredClasses = new Set();
-
-  console.log('Required Skills:', requiredSkills);
 
   for (var skill in requiredSkills) {
     if (requiredSkills.hasOwnProperty(skill)) {
-      var requiredSkillLevel = requiredSkills[skill];
-      var classTypes = ['core', 'elective'];
+      var classesSnapshot = await database.ref('/skills/' + skill + '/classes').once('value');
+      var classes = classesSnapshot.val();
 
-      for (var i = 0; i < classTypes.length; i++) {
-        var classType = classTypes[i];
-        var classPath = '/classes/' + classType;
-
-        var classesSnapshot = await database.ref(classPath).once('value');
-        var classes = classesSnapshot.val();
-
-        console.log('Classes:', classes);
-
+      if (classes) {
         for (var className in classes) {
           if (classes.hasOwnProperty(className)) {
-            var classInfo = classes[className];
-            var skillsTaught = classInfo.skillsTaught || {};
-
-            var hasRequired = hasRequiredSkill(skillsTaught, requiredSkills);
-
-            // Check if the class teaches at least one required skill
-            if (hasRequired) {
-              requiredClasses.add(className);
-              console.log("Class Name: ", className);
-            }
+            requiredClasses.add(className);
           }
         }
       }
@@ -330,103 +274,10 @@ async function findClassesTeachingSkills(requiredSkills) {
     }
   });
 
-  var requiredClassesArray = Array.from(requiredClasses);
-  console.log('Required Classes:', requiredClassesArray);
-
-  return requiredClassesArray;
+  return Array.from(requiredClasses);
 }
 
-
-// Check if a class is already taken by the user
 async function checkClassAlreadyTaken(className) {
-  try {
-    var snapshot = await database.ref(`/user/` + userID + `/classesTaken/${className}`).once('value');
-    return snapshot.exists();
-  } catch (error) {
-    console.error("Error checking class:", error);
-    return false;
-  }
+  var classSnapshot = await database.ref('users/' + userID + '/classesTaken/' + className).once('value');
+  return classSnapshot.exists();
 }
-
-// Update the qualification status message
-function updateQualificationStatus(qualifies) {
-  var qualificationStatus = document.getElementById('qualificationStatus');
-  var qualificationClasses = document.getElementById('qualificationClasses');
-
-  if (qualifies) {
-    qualificationStatus.textContent = 'You currently qualify for this career!';
-    displayQualificationMessage("Congratulations! You meet all the required skills for this career.");
-  } else {
-    qualificationStatus.textContent = 'You do not currently qualify for this career.';
-    qualificationClasses.textContent = 'You are missing the following classes to qualify:';
-  }
-}
-
-// Display a message in the qualification classes box when the user qualifies
-function displayQualificationMessage(message) {
-  var qualificationClasses = document.getElementById('qualificationClasses');
-  qualificationClasses.textContent = ''; // Clear previous contents
-
-  var headingElement = document.createElement('div');
-  headingElement.textContent = message;
-  headingElement.id = 'qualificationCongrats';
-  qualificationClasses.appendChild(headingElement);
-}
-
-
-
-function displayMissingClasses(missingClasses) {
-  var qualificationClasses = document.getElementById('qualificationClasses');
-  qualificationClasses.textContent = ''; // Clear previous contents
-
-  var headingElement = document.createElement('div');
-  headingElement.textContent = 'Classes you can take to qualify:';
-  headingElement.id = 'qualificationClassesHeading';
-  qualificationClasses.appendChild(headingElement);
-
-  var classesRef = database.ref('/classes');
-
-  missingClasses.forEach(async function (className) {
-    try {
-      var classesSnapshot = await classesRef.once('value');
-      var classes = classesSnapshot.val();
-      var classTypes = ['core', 'elective'];
-
-      for (var i = 0; i < classTypes.length; i++) {
-        var classType = classTypes[i];
-        var classTypeClasses = classes[classType];
-
-        if (classTypeClasses && classTypeClasses.hasOwnProperty(className)) {
-          var classInfo = classTypeClasses[className];
-          var classNameFromDatabase = classInfo.name;
-          var skillsTaught = classInfo.skillsTaught || {};
-          var skillList = Object.entries(skillsTaught)
-            .map(([skill, level]) => `${skill}: ${level}`)
-            .join(', ');
-
-          var classElement = document.createElement('div');
-          classElement.classList.add('className');
-          classElement.textContent = `${className} (${classNameFromDatabase})`;
-
-          var skillsElement = document.createElement('div');
-          skillsElement.classList.add('skills');
-          skillsElement.textContent = `Skills Taught: ${skillList}`;
-
-          qualificationClasses.appendChild(classElement);
-          qualificationClasses.appendChild(skillsElement);
-
-          var lineBreak = document.createElement('br');
-          qualificationClasses.appendChild(lineBreak);
-        }
-      }
-    } catch (error) {
-      console.error("Error fetching classes data:", error);
-    }
-  });
-}
-
-// Event listener for the "Generate Skills" button
-document.getElementById('generateSkillsButton').addEventListener('click', function (event) {
-  event.preventDefault(); // Prevent form submission from refreshing the page
-  updateQualificationStatus();
-});
