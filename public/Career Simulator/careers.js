@@ -15,50 +15,27 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 var database = firebase.database();
 
-var currentUser;
-var userSkills;
-var userClasses  = [];
-
-firebase.auth().onAuthStateChanged(function (user) {
-  if (user) {
-    // User is logged in
-    // You can now access the currently logged-in user's information  
-    var userID = user.uid;
-    database.ref('/users/' + uid).once('value', function(snapshot) {
-      currentUser = snapshot.val();
-      console.log('Current user data:', currentUser);
-      userSkills = currentUser.skills;
-      displayUserSkillCount(userSkills);
-    });
-    
-    // Fetch user classes from Firebase
-    database.ref('users/' + userID + '/classesTaken').once('value')
-      .then(function(snapshot) {
-        userClasses = snapshot.val() ? Object.keys(snapshot.val()) : [];
-      })
-      .catch(function(error) {
-        console.error("Error fetching user classes:", error);
-      });
-
-     // Map to the currently logged-in user here
-    console.log("User Classes:", userClasses);
-    
-  } else {
-    // User is logged out
-    // Handle the case when no user is logged in
-    console.log("User is logged out.");
-  }
-});
-
 // Fetch careers from Firebase
 database.ref('/careers').once('value', function (snapshot) {
   var careers = snapshot.val();
   populateCareerSelect(careers);
-  console.log("Careers: ", careers);
 });
 
+// Fetch user skills from Firebase
+database.ref('users/UID1/skills').once('value')
+  .then(function(snapshot) {
+    var userSkills = snapshot.val();
 
-  /*async function getUserTakenClasses() {
+    // Check if userSkills is not null or undefined before calling the function
+    if (userSkills) {
+      displayUserSkillCount(userSkills);
+    }
+  })
+  .catch(function(error) {
+    console.error("Error fetching user skills:", error);
+  });
+
+  async function getUserTakenClasses() {
     try {
       var userClassesSnapshot = await database.ref('/users/UID1/classesTaken').once('value');
       var userClasses = userClassesSnapshot.val();
@@ -67,7 +44,7 @@ database.ref('/careers').once('value', function (snapshot) {
       console.error("Error fetching user classes:", error);
       return [];
     }
-  }*/
+  }
   
 
 // Function to display the number of skills a user possesses
@@ -111,6 +88,9 @@ async function generateSkills() {
     var requiredSkillsSnapshot = await database.ref('/careers/' + intendedCareer + '/requiredSkills').once('value');
     var requiredSkills = requiredSkillsSnapshot.val();
 
+    var userSkillsSnapshot = await database.ref('users/UID1/skills').once('value');
+    var userSkills = userSkillsSnapshot.val();
+
     if (requiredSkills && userSkills) {
       var qualifies = userQualifies(requiredSkills, userSkills);
 
@@ -119,9 +99,11 @@ async function generateSkills() {
         updateQualificationStatus(true);
         createDoubleBarGraph(requiredSkills, userSkills);
       } else {
-    
+        // Fetch classes taken by the user
+        var takenClassesSnapshot = await database.ref('/user/UID1/classesTaken').once('value');
+        var takenClasses = takenClassesSnapshot.val();
 
-        var requiredClasses = await findClassesTeachingSkills(requiredSkills);
+        var requiredClasses = await findClassesTeachingSkills(requiredSkills, takenClasses);
         var missingClasses = [];
 
         for (var i = 0; i < requiredClasses.length; i++) {
@@ -310,10 +292,10 @@ async function findClassesTeachingSkills(requiredSkills) {
   }
 
   // Get the classes the user has already taken
-  var userTakenClasses = new Set(userClasses);
+  var userTakenClasses = await getUserTakenClasses();
 
   // Filter out classes that the user has already taken
-  userTakenClasses.forEach(function (className) {
+  userTakenClasses.forEach(function(className) {
     if (requiredClasses.has(className)) {
       requiredClasses.delete(className);
     }
@@ -326,11 +308,11 @@ async function findClassesTeachingSkills(requiredSkills) {
 }
 
 
-
 // Check if a class is already taken by the user
 async function checkClassAlreadyTaken(className) {
   try {
-    return userClasses.includes(className);
+    var snapshot = await database.ref(`/user/UID1/classesTaken/${className}`).once('value');
+    return snapshot.exists();
   } catch (error) {
     console.error("Error checking class:", error);
     return false;
@@ -413,3 +395,9 @@ function displayMissingClasses(missingClasses) {
     }
   });
 }
+
+/*// Event listener for the "Generate Classes" button
+document.getElementById('generateClassesButton').addEventListener('click', function (event) {
+  event.preventDefault(); // Prevent form submission from refreshing the page
+  updateQualificationClasses();
+});*/
