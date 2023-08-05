@@ -23,7 +23,6 @@ firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
     // User is logged in
     userID = user.uid;
-    console.log("User is logged in:", userID, userSkills, userClasses);
 
     // Fetch user skills from Firebase
     database.ref('users/' + userID + '/skills').once('value')
@@ -43,6 +42,8 @@ firebase.auth().onAuthStateChanged(function (user) {
       .catch(function(error) {
         console.error("Error fetching user classes:", error);
       });
+      console.log("User is logged in:", userID, userSkills, userClasses);
+      
   } else {
     // User is logged out
     // Handle the case when no user is logged in
